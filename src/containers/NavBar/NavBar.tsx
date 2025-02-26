@@ -34,7 +34,6 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
         <AppBar sx={{ bgcolor: "black", minHeight: "6rem", justifyContent: { xs: 'center', md: 'end' } }}
             position="fixed"
         >
-            <Toolbar>
                 <Container>
                     <Toolbar disableGutters>
                         {/* large screen components *************************************/}
@@ -137,13 +136,13 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                                     color: 'white',
                                 },
                                 textTransform: 'none',
-                                fontSize: "16px"
+                                fontSize: {xs:'12px', md:'16px'}
+
                             }}
                         >{content.languageButton}
                         </Button>
                     </Toolbar>
                 </Container>
-            </Toolbar>
         </AppBar>);
 
 }
