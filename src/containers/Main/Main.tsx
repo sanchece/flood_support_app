@@ -34,7 +34,7 @@ export function Main({ content }: { content: MainPage }) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    m: { sm: 0, md: 2 },
+                    m: { sm: 1, md: 2 },
                 }}>
                 <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '700', color: 'red' }}>{content.Header2}</Typography>
                 <UrgentNeeds tableHeaders={content.Table1} />
