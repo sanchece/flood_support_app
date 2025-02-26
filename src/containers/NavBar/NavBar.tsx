@@ -103,7 +103,7 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                                 sx={{ display: { xs: 'block', md: 'none' } }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu} href={content[page].url}>
+                                    <MenuItem key={page}   component="a" onClick={handleCloseNavMenu} href={content[page].url}>
                                         <Typography sx={{ textAlign: 'center' }}>{content[page].label}</Typography>
                                     </MenuItem>
                                 ))}
@@ -115,7 +115,7 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                             variant="h5"
                             noWrap
                             component="a"
-                            href="#app-bar-with-responsive-menu"
+                            href="/"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', md: 'none' },

@@ -32,15 +32,11 @@ interface ColumnData {
 
 const columns: ColumnData[] = [
   {
-    width: 100,
+    width: 75,
     label: 'Date Posted',
     dataKey: 'datePosted',
   },
-  {
-    width: 70,
-    label: 'Organization',
-    dataKey: 'organization',
-  },
+
   {
     width: 100,
     label: 'Item',
@@ -65,6 +61,11 @@ const columns: ColumnData[] = [
     width: 100,
     label: 'Hours',
     dataKey: 'hours',
+  },
+  {
+    width: 70,
+    label: 'Organization',
+    dataKey: 'organization',
   },
   {
     width: 100,
@@ -149,7 +150,6 @@ function rowContent(_index: number, row: Data) {
 
 export function UrgentNeeds({ tableHeaders }: { tableHeaders: MainPageTable }) {
   const fixedHeaderContent = () => fixedHeaderContentf(tableHeaders);
-  console.log('tableHeaders', tableHeaders)
   return (
     <Paper elevation={5} style={{ height: 400, width: '100%' }}>
       <TableVirtuoso
