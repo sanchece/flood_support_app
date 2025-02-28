@@ -1,9 +1,27 @@
 import { Box, Container, Typography } from "@mui/material";
+import { useEffect, useState } from 'react';
 import { UrgentNeeds } from '../UrgentNeeds'
-import { MainPage } from '../../globalConstants'
+import { ResourcesPieChart } from '../PieChart'
+import { MainPage, Data } from '../../globalConstants'
+import { urgentNeeds } from '../../data';
+import { dataProperties } from '../../globalConstants'
 
 
-export function Main({ content }: { content: MainPage }) {
+
+export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boolean }) {
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const data: Data[] = urgentNeeds;
+    const formattedData = isSpanish
+        ? data.map(row => {
+            const english = row.itemCategory
+            const spanish = dataProperties.spanish[english]
+            return { ...row, itemCategory: spanish }
+        })
+        : data;
+    ;
+    useEffect(() => {
+        setSelectedCategory(null);
+      }, [isSpanish]);
     return (
         <Container maxWidth='lg' sx={{
             display: 'flex',
@@ -14,31 +32,28 @@ export function Main({ content }: { content: MainPage }) {
         }}>
             <Box
                 sx={{
+                    alignContent: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 2,
+                    justifyContent: 'flex-start',
+                    m: { xs: 0, md: 2 },
+                }}>
+                <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '600' }}> {content.Header1} </Typography>
+                <ResourcesPieChart setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} data={formattedData} />
+            </Box>
+
+            <Box
+                sx={{
                     flex: 4,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     m: { xs: 1, md: 2 },
-                    pb:4
+                    pb: 4
                 }}>
                 <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '700', color: 'red' }}>{content.Header2}</Typography>
-                <UrgentNeeds tableHeaders={content.Table1} />
-            </Box>
-            <Box
-                sx={{
-                    alignContent: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flex: 2,
-                    justifyContent: 'center',
-                    m: { xs: 0, md: 2 }
-                }}>
-                <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '600' }}> {content.Header1} </Typography>
-
-                <Box sx={{ borderRadius: '16px', backgroundColor: '#EFEFEF', height: '100%', m: {xs:1, md:0}, p: 3 }}>
-                    <Typography sx={{ color: '#828282' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempor diam nec tortor dignissim mollis. Morbi sed nisl et turpis gravida convallis. Sed ullamcorper porta dapibus. Sed in erat ornare, tristique augue id, posuere lorem. Donec nunc sapien, elementum sed metus eget, ultricies fringilla velit. Praesent et purus mauris. Vivamus aliquam mi justo. Proin facilisis commodo mi vel rhoncus.
-                    </Typography>
-                </Box>
+                <UrgentNeeds tableHeaders={content.Table1} selectedCategory={selectedCategory} data={formattedData} />
             </Box>
 
         </Container>

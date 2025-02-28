@@ -1,3 +1,16 @@
+export interface Data {
+  datePosted: string;
+  organization: string;
+  item: string;
+  itemCategory: string;
+  notes: string;
+  status: string;
+  location: string;
+  hours: string;
+  social: string;
+  phone: string;
+}
+
 // Define the structure for each page (headerPage1, headerPage2, etc.)
 export interface HeaderPage {
   label: string;
@@ -66,7 +79,7 @@ export const appContent: LanguageType = {
     },
     languageButton: "español",
     mainPage: {
-      Header1: "Announcements",
+      Header1: "Available Resources",
       Header2: "Urgent Needs",
       Table1: {
         datePosted: "Date Posted",
@@ -74,7 +87,7 @@ export const appContent: LanguageType = {
         item: "Item",
         notes: "Note",
         status: "Status",
-        location: "Drop Off",
+        location: "Drop Off/Pick Up",
         hours: "Hours",
         social: "Social",
         phone: "Phone",
@@ -103,10 +116,10 @@ export const appContent: LanguageType = {
     },
     languageButton: "english",
     mainPage: {
-      Header1: "Anuncios",
+      Header1: "Recursos Disponibles",
       Header2: "Necesidades Urgentes",
       Table1: {
-        datePosted: "Fecha Publicada",
+        datePosted: "Publicado",
         organization: "Organización",
         item: "Artículo",
         notes: "Nota",
@@ -115,7 +128,7 @@ export const appContent: LanguageType = {
         hours: "Horas",
         social: "Red",
         phone: "Teléfono",
-      }
+      },
     },
     impactedPage: {
       header: "¿Fue usted afectado por la inundación?"
@@ -125,3 +138,26 @@ export const appContent: LanguageType = {
     },
   },
 } as const;
+
+export interface dataPropertiesType {
+  availableStatus: string;
+  needStatus: string;
+  spanish: any
+}
+
+export const dataProperties: dataPropertiesType = {
+  availableStatus:'Have Available',
+  needStatus:'Urgently Needed',
+  spanish:{
+    'Babies/Children':'Bebés/Niños',
+    'Cleaning':'Limpieza',
+    'Clothing':'Ropa',
+    'Hygiene':'Higiene',
+    'Medical':'Médico',
+    'Other':'Otro',
+    'Pet':'Mascota',
+    'Volunteering':'Voluntariado',
+    'Winter Essentials':'Para Invierno',
+  },
+}
+

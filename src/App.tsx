@@ -22,7 +22,7 @@ function App() {
         <NavBar content={content} changeLanguage={changeLanguage} /> <Toolbar />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Main content={content.mainPage} />} />
+            <Route path="/" element={<Main isSpanish={isSpanish} content={content.mainPage} />} />
             <Route path="/impacted" element={<Impacted content={content.impactedPage} />} />
             <Route path="/about" element={<About content={content.aboutPage} />} />
           </Routes>

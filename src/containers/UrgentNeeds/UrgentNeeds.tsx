@@ -7,78 +7,54 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso, TableComponents } from 'react-virtuoso';
-import { urgentNeeds } from './data';
+import { Link } from "@mui/material";
+import { MainPageTable, dataProperties, Data } from '../../globalConstants'
 
-import { MainPageTable } from '../../globalConstants'
-interface Data {
-  datePosted: string;
-  organization: string;
-  item: string;
-  notes: string;
-  status: string;
-  location: string;
-  hours: string;
-  social: string;
-  phone: string;
-}
 
 interface ColumnData {
   dataKey: keyof Data;
-  label: string;
   numeric?: boolean;
   width?: number;
 }
 
-
 const columns: ColumnData[] = [
   {
-    width: 75,
-    label: 'Date Posted',
-    dataKey: 'datePosted',
-  },
-
-  {
     width: 100,
-    label: 'Item',
     dataKey: 'item',
   },
   {
-    width: 70,
-    label: 'Note',
-    dataKey: 'notes',
-  },
-  {
     width: 100,
-    label: 'Status',
     dataKey: 'status',
   },
   {
     width: 110,
-    label: 'Drop Off',
     dataKey: 'location',
   },
   {
     width: 100,
-    label: 'Hours',
     dataKey: 'hours',
   },
   {
     width: 70,
-    label: 'Organization',
     dataKey: 'organization',
   },
   {
     width: 100,
-    label: 'Social',
     dataKey: 'social',
   },
   {
     width: 90,
-    label: 'Phone',
     dataKey: 'phone',
   },
+  {
+    width: 75,
+    dataKey: 'datePosted',
+  },
+  {
+    width: 70,
+    dataKey: 'notes',
+  },
 ];
-const rows: Data[] = urgentNeeds;
 
 const VirtuosoTableComponents: TableComponents<Data> = {
   Scroller: React.forwardRef<HTMLDivElement>((props, ref) => (
@@ -120,13 +96,35 @@ function getCellColor(value: string) {
     case 'Urgently Needed':
       color = "#ff5e5e";
       break;
-    case 'Have Available':
+    case dataProperties.availableStatus:
       color = "#06f305";
       break;
     default:
       color = ''
   }
   return color;
+}
+
+function createGoogleMapLink(address: string) {
+  var encodedAddress = encodeURIComponent(address + 'Detroit MI 48209'); // Encode address for URL
+  return "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
+}
+
+function getCellLink(column: string, value: string) {
+  let link = '';
+  switch (column) {
+    case 'location':
+      link = createGoogleMapLink(value);
+      break;
+    case 'social':
+      const user = value.slice(1);
+      const igLink = 'https://www.instagram.com/' + user;
+      link = igLink;
+      break;
+    default:
+      link = undefined
+  }
+  return link;
 }
 
 function rowContent(_index: number, row: Data) {
@@ -140,20 +138,28 @@ function rowContent(_index: number, row: Data) {
             fontSize: '12px',
             backgroundColor: getCellColor(row[column.dataKey])
           }}
-        >
-          {row[column.dataKey]}
+        >{getCellLink(column.dataKey, row[column.dataKey]) === undefined ? row[column.dataKey]
+          : <Link 
+          color="inherit"
+          href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
+            {row[column.dataKey]}
+          </Link>
+          }
         </TableCell>
       ))}
     </React.Fragment>
   );
 }
 
-export function UrgentNeeds({ tableHeaders }: { tableHeaders: MainPageTable }) {
+export function UrgentNeeds({ tableHeaders, selectedCategory, data }: { tableHeaders: MainPageTable, selectedCategory: string | null, data: any }) {
   const fixedHeaderContent = () => fixedHeaderContentf(tableHeaders);
+  const filteredTableData = selectedCategory
+  ? data.filter(row => row.itemCategory === selectedCategory && row.status ===dataProperties.availableStatus)
+  : data;
   return (
     <Paper elevation={5} style={{ height: 400, width: '100%' }}>
       <TableVirtuoso
-        data={rows}
+        data={filteredTableData}
         components={VirtuosoTableComponents}
         fixedHeaderContent={fixedHeaderContent}
         itemContent={rowContent}
