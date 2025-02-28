@@ -88,6 +88,7 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data 
             padding: 0,
           },
         }}
+        tooltip={{ trigger: 'none' }}
         onItemClick={onItemClick}
       />
     </Box>
