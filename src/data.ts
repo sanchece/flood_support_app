@@ -77,7 +77,7 @@ export const urgentNeeds: any = [
         "item": "Toilet Paper",
         "itemCategory": "Hygiene",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -88,7 +88,7 @@ export const urgentNeeds: any = [
         "item": "Rags",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -99,7 +99,7 @@ export const urgentNeeds: any = [
         "item": "Mops",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -110,7 +110,7 @@ export const urgentNeeds: any = [
         "item": "Laundry Detergent",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -121,7 +121,7 @@ export const urgentNeeds: any = [
         "item": "Garbage Bags",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -132,7 +132,7 @@ export const urgentNeeds: any = [
         "item": "Brooms",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -143,7 +143,7 @@ export const urgentNeeds: any = [
         "item": "Buckets",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -154,7 +154,7 @@ export const urgentNeeds: any = [
         "item": "Hygiene Kits",
         "itemCategory": "Hygiene",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -165,7 +165,7 @@ export const urgentNeeds: any = [
         "item": "Winter Items",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -176,7 +176,7 @@ export const urgentNeeds: any = [
         "item": "Pet Food",
         "itemCategory": "Pet",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -187,7 +187,7 @@ export const urgentNeeds: any = [
         "item": "Living Essentials",
         "itemCategory": "Other",
         "status": "Urgently Needed",
-        "location": "8300 Longworth St Detroit MI 48209",
+        "location": "8300 Longworth St",
         "hours": "02/24-25/2025  @9am-8pm",
         "social": "@unidetroit",
         "phone": "(313)841-4447"
@@ -198,7 +198,7 @@ export const urgentNeeds: any = [
         "item": "Toiletries",
         "itemCategory": "Hygiene",
         "status": "Urgently Needed",
-        "location": "2301 Woodmere St Detroit MI 48209",
+        "location": "2301 Woodmere St",
         "hours": "M-F @8:00am-7:00pm",
         "social": "------",
         "phone": "------"
@@ -209,7 +209,7 @@ export const urgentNeeds: any = [
         "item": "Baby Essentials",
         "itemCategory": "Babies/Children",
         "status": "Urgently Needed",
-        "location": "2301 Woodmere St Detroit MI 48209",
+        "location": "2301 Woodmere St",
         "hours": "M-F @8:00am-7:00pm",
         "social": "------",
         "phone": "------"
@@ -220,7 +220,7 @@ export const urgentNeeds: any = [
         "item": "Cleaning Suplies",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "2301 Woodmere St Detroit MI 48209",
+        "location": "2301 Woodmere St",
         "hours": "M-F @8:00am-7:00pm",
         "social": "------",
         "phone": "------"
@@ -231,7 +231,7 @@ export const urgentNeeds: any = [
         "item": "Volunteers",
         "itemCategory": "Volunteering",
         "status": "Urgently Needed",
-        "location": "2301 Woodmere St Detroit MI 48209",
+        "location": "2301 Woodmere St",
         "hours": "M-F @8:00am-7:00pm",
         "social": "------",
         "phone": "------"
@@ -242,7 +242,7 @@ export const urgentNeeds: any = [
         "item": "Hygiene Products",
         "itemCategory": "Hygiene",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -253,7 +253,7 @@ export const urgentNeeds: any = [
         "item": "Cold & Flu Medicine ",
         "itemCategory": "Medical",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -264,7 +264,7 @@ export const urgentNeeds: any = [
         "item": "Space Heaters",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -275,7 +275,7 @@ export const urgentNeeds: any = [
         "item": "Diapers",
         "itemCategory": "Babies/Children",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -286,7 +286,7 @@ export const urgentNeeds: any = [
         "item": "Baby Formula",
         "itemCategory": "Babies/Children",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -297,7 +297,7 @@ export const urgentNeeds: any = [
         "item": "Blankets",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -308,7 +308,7 @@ export const urgentNeeds: any = [
         "item": "Scarfs",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -319,7 +319,7 @@ export const urgentNeeds: any = [
         "item": "Gloves",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -330,7 +330,7 @@ export const urgentNeeds: any = [
         "item": "Hats",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -341,7 +341,7 @@ export const urgentNeeds: any = [
         "item": "Pet Food",
         "itemCategory": "Pet",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -352,7 +352,7 @@ export const urgentNeeds: any = [
         "item": "Pet Cages",
         "itemCategory": "Pet",
         "status": "Urgently Needed",
-        "location": " 7752 Vernor Hwy Detroit MI 48209",
+        "location": " 7752 Vernor Hwy",
         "hours": "M-F @9:00am-5pm",
         "social": "@sdbadet",
         "phone": "(313) 842-0986"
@@ -440,7 +440,7 @@ export const urgentNeeds: any = [
         "item": "Eletric Heaters",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -451,7 +451,7 @@ export const urgentNeeds: any = [
         "item": "Hygiene Products",
         "itemCategory": "Hygiene",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -462,7 +462,7 @@ export const urgentNeeds: any = [
         "item": "Diapers",
         "itemCategory": "Babies/Children",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -473,7 +473,7 @@ export const urgentNeeds: any = [
         "item": "Baby Wipes",
         "itemCategory": "Babies/Children",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -484,7 +484,7 @@ export const urgentNeeds: any = [
         "item": "Cleaning Suplies",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -495,7 +495,7 @@ export const urgentNeeds: any = [
         "item": "Sidewalk Salt",
         "itemCategory": "Other",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -506,7 +506,7 @@ export const urgentNeeds: any = [
         "item": "Blankets",
         "itemCategory": "Winter Essentials",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -517,7 +517,7 @@ export const urgentNeeds: any = [
         "item": "Laundry Detergent",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -528,7 +528,7 @@ export const urgentNeeds: any = [
         "item": "Air Matresses",
         "itemCategory": "Other",
         "status": "Urgently Needed",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -539,7 +539,7 @@ export const urgentNeeds: any = [
         "item": "Men Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -550,7 +550,7 @@ export const urgentNeeds: any = [
         "item": "Women Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -561,7 +561,7 @@ export const urgentNeeds: any = [
         "item": "Children Girl Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -572,7 +572,7 @@ export const urgentNeeds: any = [
         "item": "Children Boy Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -583,7 +583,7 @@ export const urgentNeeds: any = [
         "item": "Baby Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -594,7 +594,7 @@ export const urgentNeeds: any = [
         "item": "Menstrual Supplies",
         "itemCategory": "Hygiene",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -605,7 +605,7 @@ export const urgentNeeds: any = [
         "item": "Pet Supplies",
         "itemCategory": "Pet",
         "status": "Have Available",
-        "location": "1211 Trumbull St Detroit MI 48209",
+        "location": "1211 Trumbull St",
         "hours": "M-F @10:00am-5pm",
         "social": "@amodhdc",
         "phone": "-----"
@@ -616,7 +616,7 @@ export const urgentNeeds: any = [
         "item": "Cleaning Suplies",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -627,7 +627,7 @@ export const urgentNeeds: any = [
         "item": "Mops",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -638,7 +638,7 @@ export const urgentNeeds: any = [
         "item": "Heavy Duty Garbage Bags",
         "itemCategory": "Cleaning",
         "status": "Urgently Needed",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -649,7 +649,7 @@ export const urgentNeeds: any = [
         "item": "Menstrual Supplies",
         "itemCategory": "Hygiene",
         "status": "Urgently Needed",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -660,7 +660,7 @@ export const urgentNeeds: any = [
         "item": "Baby Items",
         "itemCategory": "Babies/Children",
         "status": "Urgently Needed",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -671,7 +671,7 @@ export const urgentNeeds: any = [
         "item": "Volunteers",
         "itemCategory": "Volunteering",
         "status": "Urgently Needed",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -682,7 +682,7 @@ export const urgentNeeds: any = [
         "item": "Men Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -693,7 +693,7 @@ export const urgentNeeds: any = [
         "item": "Women Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -704,7 +704,7 @@ export const urgentNeeds: any = [
         "item": "Children Girl Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -715,7 +715,7 @@ export const urgentNeeds: any = [
         "item": "Children Boy Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -726,7 +726,7 @@ export const urgentNeeds: any = [
         "item": "Baby Clothing",
         "itemCategory": "Clothing",
         "status": "Have Available",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
@@ -737,7 +737,7 @@ export const urgentNeeds: any = [
         "item": "Hygiene Essentials",
         "itemCategory": "Hygiene",
         "status": "Have Available",
-        "location": "1953 Military St Detroit MI 48209",
+        "location": "1953 Military St",
         "hours": "M-F @3:00pm-9:00pm",
         "social": "@santosdetroit",
         "phone": "-----"
