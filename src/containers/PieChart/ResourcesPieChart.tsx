@@ -50,7 +50,8 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data 
 
   return (
     <Box sx={{ display: 'flex' }}    >
-      <PieChart
+      <PieChart 
+      sx={{'&&': {touchAction: 'auto'}}}
         series={[
           {
             data: availablePieChartData.map(org => {
