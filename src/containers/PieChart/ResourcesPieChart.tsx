@@ -1,5 +1,5 @@
 import { PieChart } from '@mui/x-charts/PieChart';
-import { Box } from "@mui/material";
+import { Box, Alert, AlertTitle } from "@mui/material";
 import { dataProperties } from '../../globalConstants'
 
 interface PieChartData {
@@ -48,50 +48,59 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data 
     }
   };
 
+  const isThereData = (data.length > 0)
+
   return (
-    <Box sx={{ display: 'flex' }}    >
-      <PieChart 
-      sx={{'&&': {touchAction: 'auto'}}}
-        series={[
-          {
-            data: availablePieChartData.map(org => {
-              if (org.label !== selectedCategory && selectedCategory) {
-                return { ...org, color: 'gray', };  // Add color property
-              }
-              return { ...org, fade: true };  // Keep other objects unchanged
-            }),
-            innerRadius: 80,
-            paddingAngle: 0,
-            cornerRadius: 2,
-          },
-        ]}
-        width={450}
-        height={270}
-        colors={[
-          '#AA0815',
-          '#EF5322',
-          '#F0B41C',
-          '#49B6A9',
-          '#3D9BE1',
-          '#263793',
-          '#4B0A80',
-          '#36454F',
-          '#00919E',
-          '#45B8A7'
-        ]}
-        slotProps={{
-          legend: {
-            labelStyle: {
-              fontSize: 12,
-              fill: 'black',
+    <Box sx={{ display: 'flex' }}>
+      {isThereData ?
+        <PieChart
+          sx={{ '&&': { touchAction: 'auto' } }}
+          series={[
+            {
+              data: availablePieChartData.map(org => {
+                if (org.label !== selectedCategory && selectedCategory) {
+                  return { ...org, color: 'gray', };  // Add color property
+                }
+                return { ...org, fade: true };  // Keep other objects unchanged
+              }),
+              innerRadius: 80,
+              paddingAngle: 0,
+              cornerRadius: 2,
             },
-            position: { vertical: 'middle', horizontal: 'right' },
-            padding: 0,
-          },
-        }}
-        tooltip={{ trigger: 'none' }}
-        onItemClick={onItemClick}
-      />
+          ]}
+          width={450}
+          height={270}
+          colors={[
+            '#AA0815',
+            '#EF5322',
+            '#F0B41C',
+            '#49B6A9',
+            '#3D9BE1',
+            '#263793',
+            '#4B0A80',
+            '#36454F',
+            '#00919E',
+            '#45B8A7'
+          ]}
+          slotProps={{
+            legend: {
+              labelStyle: {
+                fontSize: 12,
+                fill: 'black',
+              },
+              position: { vertical: 'middle', horizontal: 'right' },
+              padding: 0,
+            },
+          }}
+          tooltip={{ trigger: 'none' }}
+          onItemClick={onItemClick}
+        />
+        :
+        <Alert severity="warning" sx={{ width: '100%', m:5}}>
+        <AlertTitle> Whoops :/</AlertTitle>
+        For some reason the data fetch failed. Try again later.
+      </Alert>
+      }
     </Box>
   );
 }

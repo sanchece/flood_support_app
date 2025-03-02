@@ -1,16 +1,17 @@
 import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from 'react';
-import { UrgentNeeds } from '../UrgentNeeds'
-import { ResourcesPieChart } from '../PieChart'
-import { MainPage, Data } from '../../globalConstants'
-import { urgentNeeds } from '../../data';
+
 import { dataProperties } from '../../globalConstants'
-
-
+import { MainPage } from '../../globalConstants'
+import { ResourcesPieChart } from '../PieChart'
+import { UrgentNeeds } from '../UrgentNeeds'
+import { fetchData } from '../../api'
 
 export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boolean }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const data: Data[] = urgentNeeds;
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState([]);
+    const [error, setError] = useState([]);
     const formattedData = isSpanish
         ? data.map(row => {
             const english = row.itemCategory
@@ -18,10 +19,15 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
             return { ...row, itemCategory: spanish }
         })
         : data;
-    ;
+
     useEffect(() => {
         setSelectedCategory(null);
-      }, [isSpanish]);
+        fetchData(setLoading, setData, setError, isSpanish)
+    }, [isSpanish]);
+    console.log('data', data);
+    console.log('loading', loading);
+    console.log('error', error);
+
     return (
         <Container maxWidth='lg' sx={{
             display: 'flex',
@@ -42,7 +48,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                 <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '600' }}> {content.Header1} </Typography>
                 <ResourcesPieChart setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} data={formattedData} />
             </Box>
-
             <Box
                 sx={{
                     flex: 4,
@@ -55,7 +60,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                 <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '700', color: 'red' }}>{content.Header2}</Typography>
                 <UrgentNeeds tableHeaders={content.Table1} selectedCategory={selectedCategory} data={formattedData} />
             </Box>
-
         </Container>
     );
 }
