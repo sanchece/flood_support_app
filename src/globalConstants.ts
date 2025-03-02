@@ -46,6 +46,7 @@ export interface AboutPage {
 // Define the structure for each language content (English and Spanish)
 export interface LanguageContent {
   headerTitle: string;
+  headerTitleMobile: string;
   headerPage1: HeaderPage;
   headerPage2: HeaderPage;
   headerPage3: HeaderPage;
@@ -65,6 +66,7 @@ interface LanguageType {
 export const appContent: LanguageType = {
   english: {
     headerTitle: "SW Detroit Flood Support",
+    headerTitleMobile: "SW Flood Support",
     headerPage1: {
       label: "impacted?",
       url: "/impacted"
@@ -102,6 +104,7 @@ export const appContent: LanguageType = {
   },
   spanish: {
     headerTitle: "SW Detroit Apoyo a Inundaciones",
+    headerTitleMobile: 'SW Apoyo a Inundaciones',
     headerPage1: {
       label: "¿impactado?",
       url: "/impacted"
