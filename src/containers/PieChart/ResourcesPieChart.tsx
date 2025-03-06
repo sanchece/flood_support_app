@@ -1,5 +1,5 @@
 import { PieChart } from '@mui/x-charts/PieChart';
-import { Box, Alert, AlertTitle } from "@mui/material";
+import { Box } from "@mui/material";
 import { dataProperties } from '../../globalConstants'
 
 interface PieChartData {
@@ -14,8 +14,8 @@ function calculateAvailableCount(data, status) {
 
   // Step 2: Iterate over the data and count only the "Have Available" items per category
   data.forEach(item => {
-    if (item.status === status) {
-      const category = item.itemCategory;
+ if (status.includes(item.state)) {
+      const category = item.category1;
 
       // If the category already exists in categoryCounts, increment the count
       if (categoryCounts[category]) {
@@ -38,6 +38,7 @@ function calculateAvailableCount(data, status) {
 }
 
 export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data }) {
+
   const availablePieChartData: PieChartData[] = calculateAvailableCount(data, dataProperties.availableStatus);
   const onItemClick = (event, params) => {
     if (selectedCategory !== null && selectedCategory === availablePieChartData[params.dataIndex].label) {
@@ -48,20 +49,17 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data 
     }
   };
 
-  const isThereData = (data.length > 0)
-
   return (
     <Box sx={{ display: 'flex' }}>
-      {isThereData ?
         <PieChart
           sx={{ '&&': { touchAction: 'auto' } }}
           series={[
             {
-              data: availablePieChartData.map(org => {
-                if (org.label !== selectedCategory && selectedCategory) {
-                  return { ...org, color: 'gray', };  // Add color property
+              data: availablePieChartData.map(item => {
+                if (item.label !== selectedCategory && selectedCategory) {
+                  return { ...item, color: 'gray', };  // Add color property
                 }
-                return { ...org, fade: true };  // Keep other objects unchanged
+                return { ...item, };  // Keep other objects unchanged
               }),
               innerRadius: 80,
               paddingAngle: 0,
@@ -95,12 +93,6 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data 
           tooltip={{ trigger: 'none' }}
           onItemClick={onItemClick}
         />
-        :
-        <Alert severity="warning" sx={{ width: '100%', m:5}}>
-        <AlertTitle> Whoops :/</AlertTitle>
-        For some reason the data fetch failed. Try again later.
-      </Alert>
-      }
     </Box>
   );
 }

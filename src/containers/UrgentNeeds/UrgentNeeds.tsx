@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso, TableComponents } from 'react-virtuoso';
 import { Link } from "@mui/material";
-import { MainPageTable, dataProperties, Data } from '../../globalConstants'
+import { Data, dataProperties, } from '../../globalConstants'
 
 
 interface ColumnData {
@@ -19,40 +19,44 @@ interface ColumnData {
 
 const columns: ColumnData[] = [
   {
-    width: 100,
+    width: 110,
     dataKey: 'item',
   },
   {
-    width: 100,
-    dataKey: 'status',
-  },
-  {
     width: 110,
-    dataKey: 'location',
+    dataKey: 'state',
   },
   {
     width: 100,
-    dataKey: 'hours',
+    dataKey: 'who',
   },
   {
-    width: 70,
-    dataKey: 'organization',
+    width: 80,
+    dataKey: 'category1',
+  },
+  {
+    width: 80,
+    dataKey: 'category2',
   },
   {
     width: 100,
-    dataKey: 'social',
-  },
-  {
-    width: 90,
-    dataKey: 'phone',
+    dataKey: 'address',
   },
   {
     width: 75,
-    dataKey: 'datePosted',
+    dataKey: 'accepting',
   },
   {
     width: 70,
-    dataKey: 'notes',
+    dataKey: 'connect',
+  },
+  {
+    width: 70,
+    dataKey: 'contact',
+  },
+  {
+    width: 700,
+    dataKey: 'how',
   },
 ];
 
@@ -93,33 +97,58 @@ function fixedHeaderContentf(tableHeaders) {
 function getCellColor(value: string) {
   let color = '';
   switch (value) {
-    case 'Urgently Needed':
+    case '3':
       color = "#ff5e5e";
       break;
-    case dataProperties.availableStatus:
+    case '2':
+      color = "yellow";
+      break;
+    case '1':
       color = "#06f305";
       break;
     default:
-      color = ''
+      color = '';
   }
   return color;
 }
+function getStateLabel(value: string) {
+  let label = '';
+  switch (value) {
+    case '3':
+      label = "Urgently Needed";
+      break;
+    case '2':
+      label = "Limited Availability";
+      break;
+    case '1':
+      label = "Available";
+      break
+    default:
+      label = value
+  }
+  return label;
+}
 
 function createGoogleMapLink(address: string) {
-  var encodedAddress = encodeURIComponent(address + 'Detroit MI 48209'); // Encode address for URL
+  var encodedAddress = encodeURIComponent(address); // Encode address for URL
   return "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
 }
 
 function getCellLink(column: string, value: string) {
   let link = '';
   switch (column) {
-    case 'location':
+    case 'address':
       link = createGoogleMapLink(value);
       break;
-    case 'social':
-      const user = value.slice(1);
-      const igLink = 'https://www.instagram.com/' + user;
-      link = igLink;
+    case 'contact':
+      if (value === null || value === undefined || value === '') break
+      const isInstagram = value[0] === '@'
+      if (isInstagram) {
+        const user = value.slice(1);
+        const igLink = 'https://www.instagram.com/' + user;
+        link = igLink;
+      }
+      else link = undefined
       break;
     default:
       link = undefined
@@ -138,10 +167,11 @@ function rowContent(_index: number, row: Data) {
             fontSize: '12px',
             backgroundColor: getCellColor(row[column.dataKey])
           }}
-        >{getCellLink(column.dataKey, row[column.dataKey]) === undefined ? row[column.dataKey]
-          : <Link 
-          color="inherit"
-          href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
+        >{getCellLink(column.dataKey, row[column.dataKey]) === undefined
+          ? getStateLabel(row[column.dataKey])
+          : <Link
+            color="inherit"
+            href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
             {row[column.dataKey]}
           </Link>
           }
@@ -151,11 +181,11 @@ function rowContent(_index: number, row: Data) {
   );
 }
 
-export function UrgentNeeds({ tableHeaders, selectedCategory, data }: { tableHeaders: MainPageTable, selectedCategory: string | null, data: any }) {
+export function UrgentNeeds({ tableHeaders, selectedCategory, data }: { tableHeaders: Data, selectedCategory: string | null, data: any }) {
   const fixedHeaderContent = () => fixedHeaderContentf(tableHeaders);
   const filteredTableData = selectedCategory
-  ? data.filter(row => row.itemCategory === selectedCategory && row.status ===dataProperties.availableStatus)
-  : data;
+    ? data.filter(row => row.category1 === selectedCategory && dataProperties.availableStatus.includes(row.state))
+    : data;
   return (
     <Paper elevation={5} style={{ height: 400, width: '100%' }}>
       <TableVirtuoso

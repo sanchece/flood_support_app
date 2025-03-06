@@ -1,14 +1,14 @@
 export interface Data {
-  datePosted: string;
-  organization: string;
   item: string;
-  itemCategory: string;
-  notes: string;
-  status: string;
-  location: string;
-  hours: string;
-  social: string;
-  phone: string;
+  state: string;
+  who: string;
+  category1: string;
+  category2: string;
+  address: string;
+  how: string;
+  accepting: string;
+  connect: string;
+  contact: string;
 }
 
 // Define the structure for each page (headerPage1, headerPage2, etc.)
@@ -17,22 +17,11 @@ export interface HeaderPage {
   url: string;
 }
 
-export interface MainPageTable {
-  datePosted: string;
-  organization: string;
-  item: string;
-  notes: string;
-  status: string;
-  location: string;
-  hours: string;
-  social: string;
-  phone: string;
-}
 
 export interface MainPage {
   Header1: string;
   Header2: string;
-  Table1: MainPageTable;
+  Table1: Data;
 }
 
 export interface ImpactedPage {
@@ -84,15 +73,16 @@ export const appContent: LanguageType = {
       Header1: "Available Resources",
       Header2: "Urgent Needs",
       Table1: {
-        datePosted: "Date Posted",
-        organization: "Organization",
-        item: "Item",
-        notes: "Note",
-        status: "Status",
-        location: "Drop Off/Pick Up",
-        hours: "Hours",
-        social: "Social",
-        phone: "Phone",
+        item: "Resource",
+        state: "State",
+        who: "Who",
+        category1: "Category",
+        category2: "Sub Category",
+        address: "Address",
+        how: "How",
+        accepting: "Accepting",
+        connect: "Connect",
+        contact:"Contact"
       },
     },
     impactedPage: {
@@ -122,15 +112,16 @@ export const appContent: LanguageType = {
       Header1: "Recursos Disponibles",
       Header2: "Necesidades Urgentes",
       Table1: {
-        datePosted: "Publicado",
-        organization: "Organización",
-        item: "Artículo",
-        notes: "Nota",
-        status: "Estado",
-        location: "Ubicación",
-        hours: "Horas",
-        social: "Red",
-        phone: "Teléfono",
+        item: "Recurso",
+        state: "Estado",
+        who: "Quien",
+        category1: "Category",
+        category2: "Sub Category",
+        address: "Direccion",
+        how: "Como",
+        accepting: "Aceptando",
+        connect: "Connectate",
+        contact:"Contacto"
       },
     },
     impactedPage: {
@@ -143,24 +134,12 @@ export const appContent: LanguageType = {
 } as const;
 
 export interface dataPropertiesType {
-  availableStatus: string;
-  needStatus: string;
-  spanish: any
+  availableStatus: [string, string];
+  needStatus: [string];
 }
 
 export const dataProperties: dataPropertiesType = {
-  availableStatus:'Have Available',
-  needStatus:'Urgently Needed',
-  spanish:{
-    'Babies/Children':'Bebés/Niños',
-    'Cleaning':'Limpieza',
-    'Clothing':'Ropa',
-    'Hygiene':'Higiene',
-    'Medical':'Médico',
-    'Other':'Otro',
-    'Pet':'Mascota',
-    'Volunteering':'Voluntariado',
-    'Winter Essentials':'Para Invierno',
-  },
+  availableStatus: ['1', '2'],
+  needStatus: ['3'],
 }
 

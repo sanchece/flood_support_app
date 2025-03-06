@@ -1,27 +1,10 @@
-// import axios from "axios";
-// const resourceData = async function fetchData(setData, isSpanish) {
-//     const params = { isSpanish: isSpanish }
-//     try {
-//         await axios.get(process.env.API_URL, { params })
-//             .then(function ({ data }) {
-//                 setData(data);
-//             })
-//     } catch (error) {
-//         setData([])
-//     }
-// }
-// export default resourceData;
 const baseUrl = process.env.API_URL;
-export const fetchData = async (setLoading, setData, setError, isSpanish) => {
-
+export const fetchData = async (setLoading, setCompleteData, setError) => {
+  setError(false);
   setLoading(true);
-  // const params = ;
-  const params = new URLSearchParams({ isSpanish: isSpanish });
-  // const url = baseUrl + '/resources' + params.toString();
-  const url =   `${baseUrl}/resources?${params.toString()}`;
-  console.log('url',url);
+  const url = `${baseUrl}/getData`;
   try {
-    const response = await fetch(url + '/resources', {
+    const response = await fetch(url, {
       method: 'GET', // default method
       headers: {
         'Content-Type': 'application/json',
@@ -29,13 +12,22 @@ export const fetchData = async (setLoading, setData, setError, isSpanish) => {
         // 'Authorization': 'Bearer YOUR_TOKEN'
       },
     });
-
+    const data = await response.json(); // need to convert it into js object otherwise not usable
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const result = await response.json();
-    setData(result);
+    if (!data || typeof data !== 'object') {
+      throw new Error('Invalid data: Expected an object');
+    }
+
+    // Example: Check for specific required fields
+    if (!data.en || !data.es) {
+      throw new Error('Invalid data: Missing required fields (en or es)');
+    }
+
+    setCompleteData(data);
   } catch (err) {
     setError(err.message);
   } finally {
