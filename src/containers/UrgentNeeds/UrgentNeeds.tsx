@@ -111,17 +111,17 @@ function getCellColor(value: string) {
   }
   return color;
 }
-function getStateLabel(value: string) {
+function getStateLabel(value: string, stateLabel: string) {
   let label = '';
   switch (value) {
     case '3':
-      label = "Urgently Needed";
+      label = stateLabel[3];
       break;
     case '2':
-      label = "Limited Availability";
+      label = stateLabel[2];
       break;
     case '1':
-      label = "Available";
+      label = stateLabel[1];
       break
     default:
       label = value
@@ -156,35 +156,37 @@ function getCellLink(column: string, value: string) {
   return link;
 }
 
-function rowContent(_index: number, row: Data) {
-  return (
-    <React.Fragment >
-      {columns.map((column) => (
-        <TableCell
-          key={column.dataKey}
-          align={column.numeric || false ? 'right' : 'left'}
-          style={{
-            fontSize: '12px',
-            backgroundColor: getCellColor(row[column.dataKey])
-          }}
-        >{getCellLink(column.dataKey, row[column.dataKey]) === undefined
-          ? getStateLabel(row[column.dataKey])
-          : <Link
-            color="inherit"
-            href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
-            {row[column.dataKey]}
-          </Link>
-          }
-        </TableCell>
-      ))}
-    </React.Fragment>
-  );
-}
+// function rowContent(_index: number, row: Data) {
+//   return (
+//     <React.Fragment >
+//       {columns.map((column) => (
+//         <TableCell
+//           key={column.dataKey}
+//           align={column.numeric || false ? 'right' : 'left'}
+//           style={{
+//             fontSize: '12px',
+//             backgroundColor: getCellColor(row[column.dataKey])
+//           }}
+//         >{getCellLink(column.dataKey, row[column.dataKey]) === undefined
+//           ? getStateLabel(row[column.dataKey])
+//           : <Link
+//             color="inherit"
+//             href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
+//             {row[column.dataKey]}
+//           </Link>
+//           }
+//         </TableCell>
+//       ))}
+//     </React.Fragment>
+//   );
+// }
 
-export function UrgentNeeds({ tableHeaders, selectedCategory, data }: { tableHeaders: Data, selectedCategory: string | null, data: any }) {
+export function UrgentNeeds({ content, selectedCategory, data, state }) {
+  const { Table1:tableHeaders, stateLabel } = content
+  const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
   const fixedHeaderContent = () => fixedHeaderContentf(tableHeaders);
   const filteredTableData = selectedCategory
-    ? data.filter(row => row.category1 === selectedCategory && dataProperties.availableStatus.includes(row.state))
+    ? data.filter(row => row.category1 === selectedCategory && selectedState.includes(row.state))
     : data;
   return (
     <Paper elevation={5} style={{ height: 400, width: '100%' }}>
@@ -192,7 +194,30 @@ export function UrgentNeeds({ tableHeaders, selectedCategory, data }: { tableHea
         data={filteredTableData}
         components={VirtuosoTableComponents}
         fixedHeaderContent={fixedHeaderContent}
-        itemContent={rowContent}
+        itemContent={function rowContent(_index: number, row: Data) {
+          return (
+            <React.Fragment >
+              {columns.map((column) => (
+                <TableCell
+                  key={column.dataKey}
+                  align={column.numeric || false ? 'right' : 'left'}
+                  style={{
+                    fontSize: '12px',
+                    backgroundColor: getCellColor(row[column.dataKey])
+                  }}
+                >{getCellLink(column.dataKey, row[column.dataKey]) === undefined
+                  ? getStateLabel(row[column.dataKey], stateLabel)
+                  : <Link
+                    color="inherit"
+                    href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
+                    {row[column.dataKey]}
+                  </Link>
+                  }
+                </TableCell>
+              ))}
+            </React.Fragment>
+          );
+        }}
       />
     </Paper>
   );

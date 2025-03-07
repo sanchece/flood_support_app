@@ -22,6 +22,7 @@ export interface MainPage {
   Header1: string;
   Header2: string;
   Table1: Data;
+  stateLabel: any,
 }
 
 export interface ImpactedPage {
@@ -71,7 +72,7 @@ export const appContent: LanguageType = {
     languageButton: "español",
     mainPage: {
       Header1: "Available Resources",
-      Header2: "Urgent Needs",
+      Header2: "Resources",
       Table1: {
         item: "Resource",
         state: "State",
@@ -82,8 +83,13 @@ export const appContent: LanguageType = {
         how: "How",
         accepting: "Accepting",
         connect: "Connect",
-        contact:"Contact"
+        contact: "Contact"
       },
+      stateLabel: {
+        1: 'Available',
+        2: 'Low Availability',
+        3: 'Urgently Neeeed',
+      }
     },
     impactedPage: {
       header: "Were you impacted by the flood?",
@@ -110,7 +116,7 @@ export const appContent: LanguageType = {
     languageButton: "english",
     mainPage: {
       Header1: "Recursos Disponibles",
-      Header2: "Necesidades Urgentes",
+      Header2: "Lista de Recursos",
       Table1: {
         item: "Recurso",
         state: "Estado",
@@ -121,8 +127,14 @@ export const appContent: LanguageType = {
         how: "Como",
         accepting: "Aceptando",
         connect: "Connectate",
-        contact:"Contacto"
+        contact: "Contacto"
       },
+      stateLabel: {
+        1: 'Disponible',
+        2: 'Poca Disponibilidad',
+        3: 'Se Necesita'
+      }
+
     },
     impactedPage: {
       header: "¿Fue usted afectado por la inundación?"
@@ -135,11 +147,12 @@ export const appContent: LanguageType = {
 
 export interface dataPropertiesType {
   availableStatus: [string, string];
-  needStatus: [string];
+  unavailableStatus: [string];
 }
 
 export const dataProperties: dataPropertiesType = {
   availableStatus: ['1', '2'],
-  needStatus: ['3'],
+  unavailableStatus: ['3'],
 }
+
 

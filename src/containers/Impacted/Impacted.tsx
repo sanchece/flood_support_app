@@ -12,7 +12,7 @@ export function Impacted({ content }: { content: ImpactedPage }) {
     return (
         <Container maxWidth='lg' sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
+            flexDirection: 'column',
             justifyContent: 'flex-end',
             mt: 6,
             p: { xs: 2, md: 'inherit' }

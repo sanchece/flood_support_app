@@ -31,7 +31,7 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
         setAnchorElNav(null);
     };
     return (
-        <AppBar sx={{ bgcolor: "black", minHeight: "6rem", justifyContent: { xs: 'center', md: 'end' } }}
+        <AppBar sx={{ bgcolor: "black", minHeight: "5rem", justifyContent: { xs: 'center', md: 'end' } }}
             position="fixed"
         >
             <Container>

@@ -14,7 +14,7 @@ function calculateAvailableCount(data, status) {
 
   // Step 2: Iterate over the data and count only the "Have Available" items per category
   data.forEach(item => {
- if (status.includes(item.state)) {
+    if (status.includes(item.state)) {
       const category = item.category1;
 
       // If the category already exists in categoryCounts, increment the count
@@ -37,9 +37,10 @@ function calculateAvailableCount(data, status) {
   return availableCount;
 }
 
-export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data }) {
+export function ResourcesPieChart({ setSelectedCategory, selectedCategory, state, data }) {
+  const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
 
-  const availablePieChartData: PieChartData[] = calculateAvailableCount(data, dataProperties.availableStatus);
+  const availablePieChartData: PieChartData[] = calculateAvailableCount(data, selectedState);
   const onItemClick = (event, params) => {
     if (selectedCategory !== null && selectedCategory === availablePieChartData[params.dataIndex].label) {
       setSelectedCategory(null)
@@ -51,48 +52,48 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, data 
 
   return (
     <Box sx={{ display: 'flex' }}>
-        <PieChart
-          sx={{ '&&': { touchAction: 'auto' } }}
-          series={[
-            {
-              data: availablePieChartData.map(item => {
-                if (item.label !== selectedCategory && selectedCategory) {
-                  return { ...item, color: 'gray', };  // Add color property
-                }
-                return { ...item, };  // Keep other objects unchanged
-              }),
-              innerRadius: 80,
-              paddingAngle: 0,
-              cornerRadius: 2,
+      <PieChart
+        sx={{ '&&': { touchAction: 'auto' } }}
+        series={[
+          {
+            data: availablePieChartData.map(item => {
+              if (item.label !== selectedCategory && selectedCategory) {
+                return { ...item, color: 'gray', };  // Add color property
+              }
+              return { ...item, };  // Keep other objects unchanged
+            }),
+            innerRadius: 80,
+            paddingAngle: 0,
+            cornerRadius: 2,
+          },
+        ]}
+        width={450}
+        height={270}
+        colors={[
+          '#AA0815',
+          '#EF5322',
+          '#F0B41C',
+          '#49B6A9',
+          '#3D9BE1',
+          '#263793',
+          '#4B0A80',
+          '#36454F',
+          '#00919E',
+          '#45B8A7'
+        ]}
+        slotProps={{
+          legend: {
+            labelStyle: {
+              fontSize: 12,
+              fill: 'black',
             },
-          ]}
-          width={450}
-          height={270}
-          colors={[
-            '#AA0815',
-            '#EF5322',
-            '#F0B41C',
-            '#49B6A9',
-            '#3D9BE1',
-            '#263793',
-            '#4B0A80',
-            '#36454F',
-            '#00919E',
-            '#45B8A7'
-          ]}
-          slotProps={{
-            legend: {
-              labelStyle: {
-                fontSize: 12,
-                fill: 'black',
-              },
-              position: { vertical: 'middle', horizontal: 'right' },
-              padding: 0,
-            },
-          }}
-          tooltip={{ trigger: 'none' }}
-          onItemClick={onItemClick}
-        />
+            position: { vertical: 'middle', horizontal: 'right' },
+            padding: 0,
+          },
+        }}
+        tooltip={{ trigger: 'none' }}
+        onItemClick={onItemClick}
+      />
     </Box>
   );
 }
