@@ -21,6 +21,7 @@ export interface HeaderPage {
 export interface MainPage {
   Header1: string;
   Header2: string;
+  Header3: string;
   Table1: Data;
   stateLabel: any,
 }
@@ -71,8 +72,9 @@ export const appContent: LanguageType = {
     },
     languageButton: "español",
     mainPage: {
-      Header1: "Available Resources",
-      Header2: "Resources",
+      Header1: "Resources",
+      Header2: "Available",
+      Header3: 'Needed',
       Table1: {
         item: "Resource",
         state: "State",
@@ -115,8 +117,9 @@ export const appContent: LanguageType = {
     },
     languageButton: "english",
     mainPage: {
-      Header1: "Recursos Disponibles",
-      Header2: "Lista de Recursos",
+      Header1: "Recursos",
+      Header2: "Disponible",
+      Header3: "Necesarios",
       Table1: {
         item: "Recurso",
         state: "Estado",

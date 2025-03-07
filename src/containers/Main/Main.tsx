@@ -63,6 +63,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
             <CircularProgress thickness={4} sx={{ color: 'black' }} size={80} />
         </Container >
     )
+    const headerOrder = isSpanish? 'row-reverse': 'row';
 
     // Render based on state
     if (loading) return LoadingComponent;
@@ -85,9 +86,9 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     m: { xs: 0, md: 2 },
                 }}>
                 <Box sx={{
-                    alignContent: 'center',
+                    alignContent: 'flex-start',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: headerOrder,
                     ml: { xs: 2, lg: 0 },
                     mb: 3
                 }}>
@@ -110,9 +111,9 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
 
                         }}
                     >
-                        <Typography variant='h6' sx={{ mx: 2, mt: 0, fontWeight: '600' }}>{selectedState === true ? 'Available' : 'Needed'}</Typography>
+                        <Typography variant='h6' sx={{ mx: 2, mt: 0, fontWeight: '600' }}>{selectedState === true ? content.Header2 : content.Header3}</Typography>
                     </Button>
-                    <Typography variant='h6' sx={{ p: 1, pl: 0, m: 0, mt: 0, fontWeight: '600' }}>Resources </Typography>
+                    <Typography variant='h6' sx={{ p: 1, pl: 0, m: 0, mt: 0, fontWeight: '600' }}>{content.Header1} </Typography>
                     {/* <FormControl sx={{ width: '30%' }} >
                         <InputLabel id="demo-simple-select-label">Age</InputLabel>
                         <Select
