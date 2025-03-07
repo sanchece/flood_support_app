@@ -45,6 +45,7 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                             display: { xs: 'none', md: 'flex' },
                             color: 'white',
                             textDecoration: 'none',
+                            fontWeight: '600',
                         }}
                     >
                         {content.headerTitle}
@@ -117,9 +118,9 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'Inter',
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontWeight: '600'
                         }}
                     > {content.headerTitleMobile}
                     </Typography>

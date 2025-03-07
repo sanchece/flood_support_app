@@ -111,6 +111,7 @@ function getCellColor(value: string) {
   }
   return color;
 }
+
 function getStateLabel(value: string, stateLabel: string) {
   let label = '';
   switch (value) {
@@ -156,31 +157,6 @@ function getCellLink(column: string, value: string) {
   return link;
 }
 
-// function rowContent(_index: number, row: Data) {
-//   return (
-//     <React.Fragment >
-//       {columns.map((column) => (
-//         <TableCell
-//           key={column.dataKey}
-//           align={column.numeric || false ? 'right' : 'left'}
-//           style={{
-//             fontSize: '12px',
-//             backgroundColor: getCellColor(row[column.dataKey])
-//           }}
-//         >{getCellLink(column.dataKey, row[column.dataKey]) === undefined
-//           ? getStateLabel(row[column.dataKey])
-//           : <Link
-//             color="inherit"
-//             href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
-//             {row[column.dataKey]}
-//           </Link>
-//           }
-//         </TableCell>
-//       ))}
-//     </React.Fragment>
-//   );
-// }
-
 export function UrgentNeeds({ content, selectedCategory, data, state }) {
   const { Table1:tableHeaders, stateLabel } = content
   const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
@@ -189,7 +165,7 @@ export function UrgentNeeds({ content, selectedCategory, data, state }) {
     ? data.filter(row => row.category1 === selectedCategory && selectedState.includes(row.state))
     : data;
   return (
-    <Paper elevation={5} style={{ height: 400, width: '100%' }}>
+    <Paper elevation={9} style={{ height: 450, width: '100%' }}>
       <TableVirtuoso
         data={filteredTableData}
         components={VirtuosoTableComponents}
