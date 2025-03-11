@@ -1,7 +1,7 @@
-import { PieChart } from '@mui/x-charts/PieChart';
-import { Box } from "@mui/material";
+import { PieChart, } from '@mui/x-charts/PieChart';
+import { Box, Button, Typography } from "@mui/material";
 import { dataProperties } from '../../globalConstants'
-
+import { mainCatIcons } from './styles';
 interface PieChartData {
   id: number;
   value: number;
@@ -41,6 +41,7 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, state
   const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
 
   const availablePieChartData: PieChartData[] = calculateAvailableCount(data, selectedState);
+  console.log('availablePieChartData', availablePieChartData)
   const onItemClick = (event, params) => {
     if (selectedCategory !== null && selectedCategory === availablePieChartData[params.dataIndex].label) {
       setSelectedCategory(null)
@@ -51,8 +52,27 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, state
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <PieChart
+    <Box sx={{ display: 'flex', flexDirection: 'column', width:'100%', alignItems: 'center' }}>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        height: '6rem'
+
+      }}>
+        {availablePieChartData.map((button) => (
+          <Button
+            key={button.id}
+            sx={mainCatIcons(selectedCategory === button.label)}
+            onClick={() => setSelectedCategory(button.label)}  // Update state on click
+
+          >
+            <Typography variant="body2">{button.label}</Typography>
+          </Button>
+        ))}
+      </Box>
+      {/* <PieChart
         sx={{ '&&': { touchAction: 'auto' } }}
         series={[
           {
@@ -93,7 +113,7 @@ export function ResourcesPieChart({ setSelectedCategory, selectedCategory, state
         }}
         tooltip={{ trigger: 'none' }}
         onItemClick={onItemClick}
-      />
+      /> */}
     </Box>
   );
 }

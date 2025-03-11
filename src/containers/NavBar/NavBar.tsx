@@ -13,7 +13,10 @@ import {
     MenuItem,
 } from "@mui/material";
 
-import { LanguageContent } from '../../globalConstants'
+import {
+    LanguageContent,
+    colors,
+} from '../../globalConstants'
 
 const pages = ["headerPage1", "headerPage3"];
 
@@ -31,9 +34,7 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
         setAnchorElNav(null);
     };
     return (
-        <AppBar sx={{ bgcolor: "black", minHeight: "5rem", justifyContent: { xs: 'center', md: 'end' } }}
-            position="fixed"
-        >
+        <AppBar sx={{ bgcolor: colors.navBar, minHeight: "5rem", justifyContent: { xs: 'center', md: 'end' } }}>
             <Container>
                 <Toolbar disableGutters>
                     {/* large screen components *************************************/}
@@ -43,9 +44,8 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                         href="/"
                         sx={{
                             display: { xs: 'none', md: 'flex' },
-                            color: 'white',
+                            color: colors.navMain,
                             textDecoration: 'none',
-                            fontWeight: '600',
                         }}
                     >
                         {content.headerTitle}
@@ -120,7 +120,6 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                             flexGrow: 1,
                             color: 'inherit',
                             textDecoration: 'none',
-                            fontWeight: '600'
                         }}
                     > {content.headerTitleMobile}
                     </Typography>
@@ -128,14 +127,16 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                     <Button
                         onClick={changeLanguage}
                         sx={{
-                            mx: 1, px: 1, py: 1, color: 'black', backgroundColor: 'white', display: 'block'
+                            mx: 1, px: 1, py: 1, color: 'black'
+                            , backgroundColor: colors.navButton
+                            , display: 'block'
                             , '&:hover': {
-                                backgroundColor: 'gray',
+                                backgroundColor: '#0e194d',
                                 color: 'white',
                             },
                             textTransform: 'none',
-                            fontSize: { xs: '12px', md: '16px' }
-
+                            fontSize: { xs: '12px', md: '16px' },
+                            fontFamily: 'Open Sans'
                         }}
                     >{content.languageButton}
                     </Button>

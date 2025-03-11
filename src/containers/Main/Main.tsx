@@ -6,10 +6,6 @@ import {
     CircularProgress,
     Container,
     Typography,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 
@@ -20,7 +16,6 @@ import { fetchData } from '../../api'
 import {
     pieChartWrapperStyles,
     mainContainerStyles,
-    headerWrapperStyles,
     headerNoneButtonStyles,
     headerButtonStyles,
     tableWrapperStyles,
@@ -76,21 +71,27 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     if (error || data.length <= 0) return AlertComponent;
     return (
         <Container maxWidth='lg' sx={mainContainerStyles}>
-            <Box
-                sx={pieChartWrapperStyles}>
-                <Box sx={headerWrapperStyles}>
-                    {isSpanish ? <Typography variant='h6' sx={headerNoneButtonStyles}>{content.Header1} </Typography> : ''}
-                    <Button
-                        onClick={() => {
-                            setSelectedState(!selectedState)
-                            setSelectedCategory(null)
-                        }}
-                        sx={headerButtonStyles}
-                    >
-                        <Typography variant='h6' sx={{ mx: 2, my: 0, fontWeight: '500' }}>{selectedState === true ? content.Header2 : content.Header3}</Typography>
-                    </Button>
-                    {isSpanish ? '' : <Typography variant='h6' sx={headerNoneButtonStyles}>{content.Header1} </Typography>}
-                </Box>
+            <Box sx={pieChartWrapperStyles}>
+                <Typography align="center" variant='h5' sx={headerNoneButtonStyles}>{content.Header1} </Typography>
+                <Button
+                    onClick={() => {
+                        setSelectedState(true)
+                        setSelectedCategory(null)
+                    }}
+                    sx={headerButtonStyles(selectedState)}
+                >
+                    <Typography sx={{ fontWeight: selectedState ? 600 : 400 }} variant={'body1'}>{content.button1}</Typography>
+                </Button>
+                <Button
+                    onClick={() => {
+                        setSelectedState(false)
+                        setSelectedCategory(null)
+                    }}
+                    sx={{ ...headerButtonStyles(!selectedState), mt: 2 }}
+                >
+                    <Typography sx={{ fontWeight: !selectedState ? 600 : 400 }} variant={'body1'}>{content.button2}</Typography>
+                </Button>
+                <Typography align="center" variant='h5' sx={headerNoneButtonStyles}>{content.Header2} </Typography>
                 <ResourcesPieChart setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} data={data} state={selectedState} />
             </Box>
             <Box

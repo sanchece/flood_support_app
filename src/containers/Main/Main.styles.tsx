@@ -1,25 +1,24 @@
+import { fontColor, colors } from "../../globalConstants"
 
 export const mainContainerStyles = {
     display: 'flex',
     flexDirection: { xs: 'column', md: 'row' },
     justifyContent: 'flex-start',
     mt: 5,
-    p: { xs: 0, md: 'inherit' }
+    p: { xs: 0, md: 'inherit' },
 }
 
 export const pieChartWrapperStyles =
 {
-    alignContent: 'center',
     display: 'flex',
     flexDirection: 'column',
     flex: 2,
-    justifyContent: 'flex-start',
+    alignItems: 'center',
     m: { xs: 0, md: 2 },
 }
 
 export const headerWrapperStyles =
 {
-    alignContent: 'flex-start',
     display: 'flex',
     flexDirection: 'row',
     ml: { xs: 2, lg: 0 },
@@ -27,26 +26,29 @@ export const headerWrapperStyles =
 
 export const headerNoneButtonStyles =
 {
-    p: 1,
-    pl: 0,
-    m: 0,
-    mt: 0,
-    fontWeight: '600'
+    mx: 4,
+    my: 1,
+    color: fontColor.bodyHeaders,
 }
 
-export const headerButtonStyles = {
-    '&:hover': {
-        backgroundColor: '#36454F',
-        color: 'white',
-    },
-    textTransform: 'none',
-    justifyContent: 'center',
-    p: 0,
-    color: 'white',
-    backgroundColor: 'black',
-    height: '3rem',
-    width: '9rem',
-
+export const headerButtonStyles = (selectedState) => {
+    return {
+        '&:hover': {
+            backgroundColor: '#36454F',
+            color: 'white',
+        },
+        textTransform: 'none',
+        justifyContent: 'center',
+        p: 0,
+        backgroundColor: selectedState ? colors.bodyButton1 : colors.bodyButton2,
+        border: selectedState ? 3 : 1,
+        borderColor: selectedState ? colors.bodyButton1Border : colors.bodyButton2Border,
+        color: fontColor.buttons,
+        height: '6rem',
+        width: '90%',
+        display: 'flex',
+        borderRadius: 6,
+    }
 }
 
 export const tableWrapperStyles =
@@ -57,5 +59,5 @@ export const tableWrapperStyles =
     alignItems: 'center',
     m: { xs: 1, md: 2 },
     pb: 4, pt: 3,
-
 }
+

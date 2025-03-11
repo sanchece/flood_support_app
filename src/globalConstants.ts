@@ -24,6 +24,8 @@ export interface MainPage {
   Header3: string;
   Table1: Data;
   stateLabel: any,
+  button1: string,
+  button2: string,
 }
 
 export interface ImpactedPage {
@@ -57,7 +59,7 @@ interface LanguageType {
 export const appContent: LanguageType = {
   english: {
     headerTitle: "SW Detroit Flood Support",
-    headerTitleMobile: "SW Flood Support",
+    headerTitleMobile: "SW FLOOD SUPPORT",
     headerPage1: {
       label: "impacted?",
       url: "/impacted"
@@ -72,8 +74,10 @@ export const appContent: LanguageType = {
     },
     languageButton: "español",
     mainPage: {
-      Header1: "Resources",
-      Header2: "Available",
+      Header1: "WHAT BRINGS YOU HERE TODAY?",
+      Header2: "HERE'S WHAT THE COMMUNITY NEEDS RIGHT NOW:",
+      button1: "I need support",
+      button2: "I have resources to share",
       Header3: 'Needed',
       Table1: {
         item: "Resource",
@@ -120,6 +124,8 @@ export const appContent: LanguageType = {
       Header1: "Recursos",
       Header2: "Disponible",
       Header3: "Necesarios",
+      button1: "I need support",
+      button2: "I have resources to share",
       Table1: {
         item: "Recurso",
         state: "Estado",
@@ -159,3 +165,44 @@ export const dataProperties: dataPropertiesType = {
 }
 
 
+export const colors = {
+  navBar: '#8e8b39',
+  navButton: '#f4f1e6',
+  navMain: '#fdfdfd',
+  bodyBackground: '#fbfbf5',
+  bodyButton1: '#faf5f3',
+  bodyButton1Border: '#c36750',
+  bodyButton2: '#f4f1e6',
+  bodyButton2Border: '#8e8b39',
+  selectedIcon: '#cbc577',
+  selectedIconBorder: '#8e8b39',
+  defaultIcon: '#d9d9d9',
+  navMenuButton: '#f8f8f2',
+  secondaryIcons: '#d9d9d9',
+  expandIcon: '#906131',
+  status3: '#ff3131',
+  status2: '#f67e34',
+  status1: '#00bf63',
+}
+
+export const fonts = {
+  navMain: 'Montserrat',
+  navButtons: 'Open Sans',
+  bodyHeaders: 'Montserrat',
+  bodyButtons: 'Open Sans',
+  table: 'Open Sans',
+}
+
+export const fontSize = {
+  navMain: '16pt', // mobile
+  navButton: '9px',
+  bodyHeaders: '16px',
+  bodyButtons: '12px', // bold when selected
+  icons: '9px',
+  table:'10px'
+}
+
+export const fontColor = {
+  bodyHeaders: '#0e194d',
+  buttons: '#0e194d',
+}

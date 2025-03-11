@@ -1,10 +1,7 @@
 import { SxProps } from '@mui/material';
-
+import { colors} from './globalConstants'
 
 export const appWrapperStyles: SxProps = {
-  alignItems: 'flex-start',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
   width: '100%',
+  backgroundColor: colors.bodyBackground,
 };
