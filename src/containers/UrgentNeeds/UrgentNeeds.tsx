@@ -1,4 +1,4 @@
-import {tableSortIconStyles } from './styles'
+import { tableSortIconStyles } from './styles'
 
 import React, { useEffect, useState } from 'react';
 import {
@@ -16,7 +16,7 @@ import {
 import { Link } from "@mui/material";
 
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { dataProperties,colors } from '../../globalConstants'
+import { dataProperties, colors } from '../../globalConstants'
 
 function createGoogleMapLink(address: string) {
   var encodedAddress = encodeURIComponent(address); // Encode address for URL
@@ -89,8 +89,8 @@ export function UrgentNeeds({
   selectedSubCategory }) {
   const { Table1: tableHeaders, stateLabel } = content
   const selectedStatus = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
-  const filteredTableData = selectedSubCategory ? allData.filter(row => selectedStatus.includes(row.state) && row.category2 === selectedSubCategory):
-   selectedCategory? allData.filter(row => row.category1 === selectedCategory && selectedStatus.includes(row.state))
+  const filteredTableData = selectedSubCategory ? allData.filter(row => selectedStatus.includes(row.state) && row.category2 === selectedSubCategory) :
+    selectedCategory ? allData.filter(row => row.category1 === selectedCategory && selectedStatus.includes(row.state))
       : allData.filter(row => selectedStatus.includes(row.state));
 
   const [data, setData] = useState(filteredTableData);
@@ -99,7 +99,7 @@ export function UrgentNeeds({
   const [expandedRows, setExpandedRows] = useState({});
   useEffect(() => {
     setData(filteredTableData);
-  }, [selectedCategory,selectedSubCategory, state, content]);
+  }, [selectedCategory, selectedSubCategory, state, content]);
   // Sorting function
   const handleSort = (property) => () => {
     const isAsc = orderBy === property && order === 'asc';
@@ -123,15 +123,15 @@ export function UrgentNeeds({
     }));
   };
   return (
-    <TableContainer sx={{ maxHeight: 450, border:1, borderColor: colors.defaultIcon }} >
+    <TableContainer sx={{ maxHeight: 450, border: 1, borderColor: colors.defaultIcon }} >
       <Table>
-        <TableHead  sx ={{  
-}}>
+        <TableHead sx={{
+        }}>
           <TableRow sx={{
 
             position: 'sticky',
             top: 0,
-            backgroundColor: selectedCategory === null? colors.bodyButton1: colors.bodyButton2,
+            backgroundColor: selectedCategory === null ? colors.bodyButton1 : colors.bodyButton2,
             zIndex: 1,
 
           }}>
@@ -181,7 +181,7 @@ export function UrgentNeeds({
                 </TableCell>
                 <TableCell><Typography variant="body2"> {row.item} </Typography></TableCell>
                 <TableCell><Typography variant="body2"> {row.who}
-                  <IconButton sx={{backgroundColor:'#906131', ml:1,p:.1, color:'white'}} onClick={() => handleExpand(index)}>
+                  <IconButton sx={{ backgroundColor: '#906131', ml: 1, p: .1, color: 'white' }} onClick={() => handleExpand(index)}>
                     {expandedRows[index] ? <ExpandLess /> : <ExpandMore />}
                   </IconButton> </Typography>
                 </TableCell>

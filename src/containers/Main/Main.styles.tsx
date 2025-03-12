@@ -58,6 +58,6 @@ export const tableWrapperStyles =
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    m: { xs: 1, md: 2 },
+    m: { xs: 0, md: 2 },
     pb: 4, pt: 3,
 }

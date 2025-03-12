@@ -91,7 +91,10 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
         ))}
       </Box>
       {selectedCategory !== null ? <PieChart
-        sx={{ '&&': { touchAction: 'auto' } }}
+        sx={{ '&&': { touchAction: 'auto' }}}
+        margin={{
+          left: -40, // Negative value moves the pie left
+        }}
         series={[
           {
             data: availablePieChartData2.map(item => {
@@ -100,13 +103,14 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
               }
               return { ...item, };  // Keep other objects unchanged
             }),
-            innerRadius: 55,
+            innerRadius: 40,
             paddingAngle: 0,
             cornerRadius: 3,
+            outerRadius: 80,
           },
         ]}
-        width={450}
-        height={200}
+        width={340}
+        height={210}
         colors={[
           '#AA0815',
           '#EF5322',
@@ -122,7 +126,7 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
         slotProps={{
           legend: {
             labelStyle: {
-              fontSize: 12,
+              fontSize: 10,
               fill: 'black',
             },
             position: { vertical: 'middle', horizontal: 'right' },
