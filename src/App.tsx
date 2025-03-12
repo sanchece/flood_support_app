@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Toolbar, Container } from '@mui/material';
-import '@fontsource/montserrat';
-import "@fontsource/montserrat/900.css"; // Specify weight
-import "@fontsource/montserrat/600.css"; // Specify weight
-import "@fontsource/open-sans/600.css"; // Specify weight
-import '@fontsource/open-sans'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Routes, Route } from "react-router";
+import '@fontsource/montserrat';
+import "@fontsource/montserrat/900.css";
+import "@fontsource/montserrat/600.css";
+import "@fontsource/open-sans/600.css";
+import '@fontsource/open-sans'
+import './index.css';
+
 import {
   About,
   Impacted,
@@ -15,35 +16,16 @@ import {
   NavBar,
 } from './containers';
 import { appContent } from './globalConstants.js'
-import { appWrapperStyles } from './App.styles';
-import './index.css';
+import { appWrapperStyles, graftLivingStudiosTheme } from './App.styles';
 
 function App() {
   const [isSpanish, setSpanish] = React.useState(false);
   const content = isSpanish ? appContent.spanish : appContent.english
   const changeLanguage = () => setSpanish(!isSpanish);
-  const THEME = createTheme({
-    typography: {
-      fontFamily: 'Montserrat, Open Sans',
-      h5: {
-        fontWeight: 600,
-        fontSize: 16
-      },
-      body1: {
-        fontSize: 12,
-        fontFamily: 'Open Sans',
-
-      },
-      body2: {
-        fontSize: 9,
-        fontFamily: 'Open Sans',
-      },
-    }
-  });
 
   return (
     <Container sx={appWrapperStyles}>
-      <ThemeProvider theme={THEME}>
+      <ThemeProvider theme={graftLivingStudiosTheme}>
         <NavBar content={content} changeLanguage={changeLanguage} /> <Toolbar />
         <BrowserRouter>
           <Routes>

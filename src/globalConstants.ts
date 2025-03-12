@@ -1,7 +1,8 @@
 export interface Data {
   item: string;
   state: string;
-  who: string;
+  whoHas: string;
+  whoNeed: string;
   category1: string;
   category2: string;
   address: string;
@@ -74,16 +75,16 @@ export const appContent: LanguageType = {
     },
     languageButton: "español",
     mainPage: {
-      Header1: "WHAT BRINGS YOU HERE TODAY?",
-      Header2: "HERE'S WHAT THE COMMUNITY NEEDS RIGHT NOW:",
       button1: "I need support",
       button2: "I have resources to share",
-      Header3: 'Needed',
+      Header1: "WHAT BRINGS YOU HERE TODAY?",
+      Header2: "HERE'S WHAT THE COMMUNITY NEEDS RIGHT NOW:",
+      Header3: `HERE'S WHAT'S AVAILABLE IN THE COMMUNITY`,
       Table1: {
         item: "Resource",
         state: "State",
-        who: "Who",
-        category1: "Category",
+        whoHas: "Available At",
+        whoNeed: "Requested By",        category1: "Category",
         category2: "Sub Category",
         address: "Address",
         how: "How",
@@ -93,8 +94,8 @@ export const appContent: LanguageType = {
       },
       stateLabel: {
         1: 'Available',
-        2: 'Low Availability',
-        3: 'Urgently Neeeed',
+        2: 'Low Supply',
+        3: 'Urgent',
       }
     },
     impactedPage: {
@@ -121,15 +122,16 @@ export const appContent: LanguageType = {
     },
     languageButton: "english",
     mainPage: {
-      Header1: "Recursos",
-      Header2: "Disponible",
-      Header3: "Necesarios",
-      button1: "I need support",
-      button2: "I have resources to share",
+      button1: "Necesito apoyo",
+      button2: "Quiero Ayudar",
+      Header1: "¿CÓMO PODEMOS AYUDARTE?",
+      Header2: "ESTO ES LO QUE LA COMUNIDAD NECESITA AHORA:",
+      Header3: "ESTO ES LO QUE ESTÁ DISPONIBLE EN LA COMUNIDAD:",
       Table1: {
         item: "Recurso",
         state: "Estado",
-        who: "Quien",
+        whoHas: "Disponible en",
+        whoNeed: "Se Necesita En",
         category1: "Category",
         category2: "Sub Category",
         address: "Direccion",
