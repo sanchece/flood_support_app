@@ -21,21 +21,24 @@ import {
     tableWrapperStyles,
 } from "./Main.styles";
 
+import available from '../../assets/available.svg'
+import need from '../../assets/need.svg'
+
 export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boolean }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedState, setSelectedState] = useState(true);
+    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const [selectedState, setSelectedState] = useState(undefined);
     const [completeData, setCompleteData] = useState({ es: [], en: [] });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        // console.log('mounting...')
         fetchData(setLoading, setCompleteData, setError);
     }, []);
 
     useEffect(() => {
-        // console.log('changing language...')
         setSelectedCategory(null);
+        setSelectedSubCategory(null);
     }, [isSpanish]);
 
     const data = isSpanish ? completeData.es : completeData.en;
@@ -77,29 +80,50 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     onClick={() => {
                         setSelectedState(true)
                         setSelectedCategory(null)
+                        setSelectedSubCategory(null)
                     }}
                     sx={headerButtonStyles(selectedState)}
                 >
-                    <Typography sx={{ fontWeight: selectedState ? 600 : 400 }} variant={'body1'}>{content.button1}</Typography>
+                    <img src={available} alt={''} width={35} height={35} />
+                    <Typography sx={{ opacity: 0.65, ml: 4, fontWeight: selectedState ? 600 : 400 }} variant={'body1'}>{content.button1}</Typography>
                 </Button>
                 <Button
                     onClick={() => {
                         setSelectedState(false)
                         setSelectedCategory(null)
+                        setSelectedSubCategory(null)
                     }}
-                    sx={{ ...headerButtonStyles(!selectedState), mt: 2 }}
+                    sx={{ ...headerButtonStyles(selectedState === false), mt: 2 }}
                 >
-                    <Typography sx={{ fontWeight: !selectedState ? 600 : 400 }} variant={'body1'}>{content.button2}</Typography>
+                    <img src={need} alt={''} width={35} height={35} />
+                    <Typography sx={{ opacity: 0.65, ml: 4, fontWeight: selectedState === false ? 600 : 400 }} variant={'body1'}>{content.button2}</Typography>
                 </Button>
-                <Typography align="center" variant='h5' sx={headerNoneButtonStyles}>{content.Header2} </Typography>
-                <ResourcesPieChart setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} data={data} state={selectedState} />
+                {selectedState !== undefined ?
+                    <Box sx={{ pieChartWrapperStyles }}>
+                        <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 4 }}>{selectedState === true ? content.Header3 : content.Header2} </Typography>
+                        <ResourcesPieChart
+                            setSelectedSubCategory={setSelectedSubCategory}
+                            selectedSubCategory={selectedSubCategory}
+                            setSelectedCategory={setSelectedCategory}
+                            selectedCategory={selectedCategory}
+                            allData={data}
+                            state={selectedState} />
+                    </Box> : <></>}
             </Box>
-            <Box
-                sx={tableWrapperStyles}>
-                {/* <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '700', color: selectedState ? 'green' :  'red' }} >{content.Header2}</Typography> */}
-                <UrgentNeeds content={content} selectedCategory={selectedCategory} data={data} state={selectedState} />
-            </Box>
-        </Container>
+            {selectedState !== undefined ?
+                <Box
+                    sx={tableWrapperStyles}>
+                    {/* <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '700', color: selectedState ? 'green' :  'red' }} >{content.Header2}</Typography> */}
+                    <UrgentNeeds
+                        content={content}
+                        selectedCategory={selectedCategory}
+                        allData={data}
+                        state={selectedState}
+                        selectedSubCategory={selectedSubCategory}
+                    />
+                </Box>
+                : <></>}
+        </Container >
     );
 }
 

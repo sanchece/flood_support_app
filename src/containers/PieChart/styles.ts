@@ -9,10 +9,11 @@ export const mainCatIcons = (selectedCategory) => {
         height: '5rem',
         p: 3,
         textTransform: 'none',
-
+        mr: 1,
         width: '5rem',
         color: 'black',
         backgroundColor: selectedCategory ? colors.selectedIcon : colors.defaultIcon,
-
+        display: 'flex',
+        flexDirection: 'column'
     }
 }

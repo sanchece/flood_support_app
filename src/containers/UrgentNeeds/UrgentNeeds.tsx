@@ -1,134 +1,22 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { TableVirtuoso, TableComponents } from 'react-virtuoso';
-import { Link } from "@mui/material";
-import { Data, dataProperties, } from '../../globalConstants'
+import {tableSortIconStyles } from './styles'
 
-
-interface ColumnData {
-  dataKey: keyof Data;
-  numeric?: boolean;
-  width?: number;
-}
-
-const columns: ColumnData[] = [
-  {
-    width: 110,
-    dataKey: 'item',
-  },
-  {
-    width: 110,
-    dataKey: 'state',
-  },
-  {
-    width: 100,
-    dataKey: 'who',
-  },
-  {
-    width: 80,
-    dataKey: 'category1',
-  },
-  {
-    width: 80,
-    dataKey: 'category2',
-  },
-  {
-    width: 100,
-    dataKey: 'address',
-  },
-  {
-    width: 75,
-    dataKey: 'accepting',
-  },
-  {
-    width: 70,
-    dataKey: 'connect',
-  },
-  {
-    width: 70,
-    dataKey: 'contact',
-  },
-  {
-    width: 700,
-    dataKey: 'how',
-  },
-];
-
-const VirtuosoTableComponents: TableComponents<Data> = {
-  Scroller: React.forwardRef<HTMLDivElement>((props, ref) => (
-    <TableContainer component={Paper} {...props} ref={ref} />
-  )),
-  Table: (props) => (
-    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} size="small" />
-  ),
-  TableHead: React.forwardRef<HTMLTableSectionElement>((props, ref) => (
-    <TableHead {...props} ref={ref} />
-  )),
+import React, { useEffect, useState } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
   TableRow,
-  TableBody: React.forwardRef<HTMLTableSectionElement>((props, ref) => (
-    <TableBody {...props} ref={ref} />
-  )),
-};
+  TableSortLabel,
+  IconButton,
+  Chip,
+  Typography,
+} from '@mui/material';
+import { Link } from "@mui/material";
 
-function fixedHeaderContentf(tableHeaders) {
-  return (
-    <TableRow >
-      {columns.map((column) => (
-        <TableCell
-          key={column.dataKey}
-          variant="head"
-          align={column.numeric || false ? 'right' : 'left'}
-          style={{ width: column.width, fontWeight: 'bold', fontSize: '12px' }}
-          sx={{ backgroundColor: 'background.paper' }}
-        >
-          {tableHeaders[column.dataKey]}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
-}
-
-function getCellColor(value: string) {
-  let color = '';
-  switch (value) {
-    case '3':
-      color = "#ff5e5e";
-      break;
-    case '2':
-      color = "yellow";
-      break;
-    case '1':
-      color = "#06f305";
-      break;
-    default:
-      color = '';
-  }
-  return color;
-}
-
-function getStateLabel(value: string, stateLabel: string) {
-  let label = '';
-  switch (value) {
-    case '3':
-      label = stateLabel[3];
-      break;
-    case '2':
-      label = stateLabel[2];
-      break;
-    case '1':
-      label = stateLabel[1];
-      break
-    default:
-      label = value
-  }
-  return label;
-}
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
+import { dataProperties,colors } from '../../globalConstants'
 
 function createGoogleMapLink(address: string) {
   var encodedAddress = encodeURIComponent(address); // Encode address for URL
@@ -157,47 +45,174 @@ function getCellLink(column: string, value: string) {
   return link;
 }
 
-export function UrgentNeeds({ content, selectedCategory, data, state }) {
-  const { Table1:tableHeaders, stateLabel } = content
-  const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
-  const fixedHeaderContent = () => fixedHeaderContentf(tableHeaders);
-  const filteredTableData = selectedCategory
-    ? data.filter(row => row.category1 === selectedCategory && selectedState.includes(row.state))
-    : data;
+function getStateLabel(value: string, stateLabel: string) {
+  let label = '';
+  switch (value) {
+    case '3':
+      label = stateLabel[3];
+      break;
+    case '2':
+      label = stateLabel[2];
+      break;
+    case '1':
+      label = stateLabel[1];
+      break
+    default:
+      label = value
+  }
+  return label;
+}
+
+function getCellColor(value: string) {
+  let color = '';
+  switch (value) {
+    case '3':
+      color = "#ff3131";
+      break;
+    case '2':
+      color = "#f67e34";
+      break;
+    case '1':
+      color = "#00bf63";
+      break;
+    default:
+      color = '';
+  }
+  return color;
+}
+
+export function UrgentNeeds({
+  content,
+  selectedCategory,
+  allData,
+  state,
+  selectedSubCategory }) {
+  const { Table1: tableHeaders, stateLabel } = content
+  const selectedStatus = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
+  const filteredTableData = selectedSubCategory ? allData.filter(row => selectedStatus.includes(row.state) && row.category2 === selectedSubCategory):
+   selectedCategory? allData.filter(row => row.category1 === selectedCategory && selectedStatus.includes(row.state))
+      : allData.filter(row => selectedStatus.includes(row.state));
+
+  const [data, setData] = useState(filteredTableData);
+  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
+  const [orderBy, setOrderBy] = useState('state');
+  const [expandedRows, setExpandedRows] = useState({});
+  useEffect(() => {
+    setData(filteredTableData);
+  }, [selectedCategory,selectedSubCategory, state, content]);
+  // Sorting function
+  const handleSort = (property) => () => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+
+    const sortedData = [...data].sort((a, b) => {
+      if (isAsc) {
+        return b[property].localeCompare(a[property]);
+      }
+      return a[property].localeCompare(b[property]);
+    });
+    setData(sortedData);
+  };
+
+  // Toggle row expansion
+  const handleExpand = (index) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
   return (
-    <Paper elevation={9} style={{ height: 450, width: '100%' }}>
-      <TableVirtuoso
-        data={filteredTableData}
-        components={VirtuosoTableComponents}
-        fixedHeaderContent={fixedHeaderContent}
-        itemContent={function rowContent(_index: number, row: Data) {
-          return (
-            <React.Fragment >
-              {columns.map((column) => (
-                <TableCell
-                  key={column.dataKey}
-                  align={column.numeric || false ? 'right' : 'left'}
-                  style={{
-                    fontSize: '12px',
-                    backgroundColor: getCellColor(row[column.dataKey])
-                  }}
-                >{getCellLink(column.dataKey, row[column.dataKey]) === undefined
-                  ? getStateLabel(row[column.dataKey], stateLabel)
-                  : <Link
-                    color="inherit"
-                    href={getCellLink(column.dataKey, row[column.dataKey])} target="_blank">
-                    {row[column.dataKey]}
-                  </Link>
-                  }
+    <TableContainer sx={{ maxHeight: 450, border:1, borderColor: colors.defaultIcon }} >
+      <Table>
+        <TableHead  sx ={{  
+}}>
+          <TableRow sx={{
+
+            position: 'sticky',
+            top: 0,
+            backgroundColor: selectedCategory === null? colors.bodyButton1: colors.bodyButton2,
+            zIndex: 1,
+
+          }}>
+            <TableCell sx={{ width: '30%' }}>
+              <TableSortLabel
+                active={orderBy === 'state'}
+                direction={orderBy === 'state' ? order : 'asc'}
+                onClick={handleSort('state')}
+                sx={tableSortIconStyles}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 600 }}> {tableHeaders.state} </Typography>
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sx={{ width: '40%' }}>
+              <TableSortLabel
+                active={orderBy === 'item'}
+                direction={orderBy === 'item' ? order : 'asc'}
+                onClick={handleSort('item')}
+                sx={tableSortIconStyles}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 600 }}> {tableHeaders.item} </Typography>
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sx={{ width: '25%' }}>
+              <TableSortLabel
+                active={orderBy === 'who'}
+                direction={orderBy === 'who' ? order : 'asc'}
+                onClick={handleSort('who')}
+                sx={tableSortIconStyles}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 600 }}> {state === true ? tableHeaders.whoHas : tableHeaders.whoNeed} </Typography>
+              </TableSortLabel>
+            </TableCell>
+            {/* <TableCell sx={{width:'5%'}}/>  */}
+          </TableRow>
+        </TableHead>
+        <TableBody sx={{
+          backgroundColor: 'white', // Transparent header
+          border: .7, // No borders
+          borderColor: '#d9d9d9',
+        }}>
+          {data.map((row, index) => (
+            <React.Fragment key={index}>
+              <TableRow>
+                <TableCell>
+                  <Chip sx={{ width: '100%', backgroundColor: getCellColor(row.state) }} label={<Typography variant="body2"> {getStateLabel(row.state, stateLabel)} </Typography>} />
                 </TableCell>
-              ))}
+                <TableCell><Typography variant="body2"> {row.item} </Typography></TableCell>
+                <TableCell><Typography variant="body2"> {row.who}
+                  <IconButton sx={{backgroundColor:'#906131', ml:1,p:.1, color:'white'}} onClick={() => handleExpand(index)}>
+                    {expandedRows[index] ? <ExpandLess /> : <ExpandMore />}
+                  </IconButton> </Typography>
+                </TableCell>
+              </TableRow>
+              {expandedRows[index] && (
+                <TableRow sx={{
+                  backgroundColor: '#d9d9d9', // Transparent header
+                }}>
+                  <TableCell ><Link
+                    color="inherit"
+                    href={getCellLink('address', row.address)}
+                    target="_blank">
+                    <Typography variant="body2"> {row.address} </Typography>
+                  </Link></TableCell>
+                  <TableCell >
+                    <Link
+                      color="inherit"
+                      href={getCellLink('contact', row.contact)}
+                      target="_blank">
+                      <Typography variant="body2"> {row.contact} </Typography>
+                    </Link></TableCell>
+
+                  <TableCell colSpan={2}> <Typography variant="body2"> {row.how} </Typography></TableCell>
+                </TableRow>
+              )}
             </React.Fragment>
-          );
-        }}
-      />
-    </Paper>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 
 export default UrgentNeeds;
-

@@ -38,8 +38,9 @@ export const headerButtonStyles = (selectedState) => {
             color: 'white',
         },
         textTransform: 'none',
-        justifyContent: 'center',
-        p: 0,
+        justifyContent: 'flex-start',
+        py: 0,
+        px:4,
         backgroundColor: selectedState ? colors.bodyButton1 : colors.bodyButton2,
         border: selectedState ? 3 : 1,
         borderColor: selectedState ? colors.bodyButton1Border : colors.bodyButton2Border,
@@ -47,7 +48,7 @@ export const headerButtonStyles = (selectedState) => {
         height: '6rem',
         width: '90%',
         display: 'flex',
-        borderRadius: 6,
+        borderRadius: 6,     
     }
 }
 
@@ -60,4 +61,3 @@ export const tableWrapperStyles =
     m: { xs: 1, md: 2 },
     pb: 4, pt: 3,
 }
-
