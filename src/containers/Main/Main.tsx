@@ -6,10 +6,10 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 
-import { MainPage } from '../../globalConstants'
+import { fetchData } from '../../api'
+import { MainPage, dataProperties } from '../../globalConstants'
 import { ResourceSelection } from '../ResourceSelection'
 import { ResourcesTable } from '../ResourceTable'
-import { fetchData } from '../../api'
 import {
     headerButtonStyles,
     headerNoneButtonStyles,
@@ -40,15 +40,22 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
         setSelectedSubCategory(undefined);
     }, [isSpanish]);
 
-    const data = isSpanish ? completeData.es : completeData.en;
-    const isGiveSelected = selectedState === false ? true : false;
+    const data = isSpanish ? completeData.es : completeData.en; // filter data by language
+    const isAnyThingSelected = selectedState !== undefined; // used to hide components if need/have not selected
+
+    const selectedStatusOptions = selectedState ? dataProperties.availableStatus : dataProperties.unavailableStatus; // used to filter data 
+    // selected table data - filtered by cat 1,cat2, state OR cat1, state OR just state
+    const selectedTableData = selectedSubCategory
+        ? data.filter(row => selectedStatusOptions.includes(row.state) && row.category1 === selectedCategory && row.category2 === selectedSubCategory)
+        : selectedCategory
+            ? data.filter(row => selectedStatusOptions.includes(row.state) && row.category1 === selectedCategory)
+            : data.filter(row => selectedStatusOptions.includes(row.state));
 
     const handleMainButtonClick = (state) => (event) => {
-        setSelectedCategory(undefined)
-        setSelectedState(state)
-        setSelectedSubCategory(undefined)
+        setSelectedCategory(undefined);
+        setSelectedState(state);
+        setSelectedSubCategory(undefined);
     }
-
     // Render based on state
     if (loading) return LoadingComponent;
     if (error || data.length <= 0) return AlertComponent;
@@ -60,31 +67,32 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     <img src={available} alt={'Available Icon'} width={35} height={35} />
                     <Typography sx={mainButtonStyling} variant={'body1'}>{content.button1}</Typography>
                 </Button>
-                <Button onClick={handleMainButtonClick(false)} sx={{ ...headerButtonStyles(isGiveSelected), mt: 2 }}>
+                <Button onClick={handleMainButtonClick(false)} sx={{ ...headerButtonStyles(selectedState === false), mt: 2 }}>
                     <img src={need} alt={'Need Icon'} width={35} height={35} />
                     <Typography sx={mainButtonStyling} variant={'body1'}>{content.button2}</Typography>
                 </Button>
-                {selectedState !== undefined ?
+                {isAnyThingSelected ?
                     <Box sx={{ pieChartWrapperStyles }}>
                         <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 4 }}>{selectedState ? content.Header3 : content.Header2} </Typography>
                         <ResourceSelection
                             allData={data}
                             selectedCategory={selectedCategory}
+                            selectedTableData={selectedTableData}
+                            selectedStatusOptions={selectedStatusOptions}
                             selectedSubCategory={selectedSubCategory}
                             setSelectedCategory={setSelectedCategory}
                             setSelectedSubCategory={setSelectedSubCategory}
-                            state={selectedState} />
+                        />
                     </Box> : <></>
                 }
             </Box>
-
-            {selectedState !== undefined ?
+            {isAnyThingSelected ?
                 <Box
                     sx={tableWrapperStyles}>
                     <ResourcesTable
-                        allData={data}
                         content={content}
                         selectedCategory={selectedCategory}
+                        selectedTableData={selectedTableData}
                         selectedSubCategory={selectedSubCategory}
                         state={selectedState}
                     />

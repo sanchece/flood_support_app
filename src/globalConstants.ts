@@ -84,7 +84,8 @@ export const appContent: LanguageType = {
         item: "Resource",
         state: "State",
         whoHas: "Available At",
-        whoNeed: "Requested By",        category1: "Category",
+        whoNeed: "Requested By",
+        category1: "Category",
         category2: "Sub Category",
         address: "Address",
         how: "How",
@@ -181,10 +182,23 @@ export const colors = {
   defaultIcon: '#d9d9d9',
   navMenuButton: '#f8f8f2',
   secondaryIcons: '#d9d9d9',
-  expandIcon: '#906131',
+  tableExpandIcon: '#906131',
+  tableExpandedRow:'#d9d9d9',
   status3: '#ff3131',
   status2: '#f67e34',
   status1: '#00bf63',
+  pieChart: [
+    '#AA0815',
+    '#EF5322',
+    '#F0B41C',
+    '#49B6A9',
+    '#3D9BE1',
+    '#263793',
+    '#4B0A80',
+    '#36454F',
+    '#00919E',
+    '#45B8A7'
+  ]
 }
 
 export const fonts = {
@@ -201,7 +215,7 @@ export const fontSize = {
   bodyHeaders: '16px',
   bodyButtons: '12px', // bold when selected
   icons: '9px',
-  table:'10px'
+  table: '10px'
 }
 
 export const fontColor = {

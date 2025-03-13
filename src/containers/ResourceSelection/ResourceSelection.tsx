@@ -1,7 +1,11 @@
 import { PieChart, } from '@mui/x-charts/PieChart';
 import { Box, Button, Typography } from "@mui/material";
-import { dataProperties } from '../../globalConstants'
-import { mainCatIcons } from './styles';
+import { colors } from '../../globalConstants'
+import {
+  mainCatIcons,
+  mainCatIconsContainer,
+  resourceSelectionContainer,
+} from './styles';
 import Food from '../../assets/food.svg'; // Adjust the path accordingly
 import Info from '../../assets/info.svg'; // Adjust the path accordingly
 import Service from '../../assets/service.svg'; // Adjust the path accordingly
@@ -44,45 +48,43 @@ function countItems(data, label, keyForCondition, validKeyValues) {
   return result;
 }
 
-export function ResourceSelection({ setSelectedSubCategory, selectedSubCategory, setSelectedCategory, selectedCategory, state, allData }) {
-  const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
-  const filteredTableData = selectedCategory
-    ? allData.filter(row => row.category1 === selectedCategory && selectedState.includes(row.state))
-    : allData.filter(row => selectedState.includes(row.state));
-  const availablePieChartData = countItems(allData, 'category1', 'state', selectedState);
-  const availablePieChartData2 = countItems(filteredTableData, 'category2', 'category1', [selectedCategory]);
+export function ResourceSelection({
+  setSelectedSubCategory,
+  selectedSubCategory,
+  setSelectedCategory,
+  selectedCategory,
+  allData,
+  selectedTableData,
+  selectedStatusOptions,
+}) {
+  const iconButtonOptions = countItems(allData, 'category1', 'state', selectedStatusOptions);
+  const secondaryOptions = countItems(selectedTableData, 'category2', 'category1', [selectedCategory]);
 
-  const onSubCatClick = (event, params) => {
-    if (selectedSubCategory !== undefined && selectedSubCategory === availablePieChartData2[params.dataIndex].label) {
+  const onMainCatClick = (button) => () => {
+    if (selectedCategory === button.label) {
+      setSelectedCategory(undefined)
+    } else {
+      setSelectedCategory(button.label)
       setSelectedSubCategory(undefined)
     }
-    else {
-      setSelectedSubCategory(availablePieChartData2[params.dataIndex].label)
+  };
+
+  const onSubCatClick = (event, params) => {
+    if (selectedSubCategory !== undefined && selectedSubCategory === iconButtonOptions[params.dataIndex].label) {
+      setSelectedSubCategory(undefined)
+    } else {
+      setSelectedSubCategory(secondaryOptions[params.dataIndex].label)
     }
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '90%',
-        height: '6rem'
-
-      }}>
-        {availablePieChartData.map((button) => (
+    <Box sx={resourceSelectionContainer}>
+      <Box sx={mainCatIconsContainer}>
+        {iconButtonOptions.map((button) => (
           <Button
             key={button.id}
             sx={mainCatIcons(selectedCategory === button.label)}
-            onClick={() => {
-              if (selectedCategory === button.label) {
-                setSelectedCategory(undefined)
-              } else {
-                setSelectedCategory(button.label)
-                setSelectedSubCategory(undefined)
-              }
-            }
-            }
+            onClick={onMainCatClick(button)}
           >
             <img src={iconMap[button.label]} alt={button.label} width={35} height={35} />
             <Typography variant="body2">{button.label}</Typography>
@@ -90,52 +92,43 @@ export function ResourceSelection({ setSelectedSubCategory, selectedSubCategory,
           </Button>
         ))}
       </Box>
-      {selectedCategory !== undefined ? <PieChart
-        sx={{ '&&': { touchAction: 'auto' }}}
-        margin={{
-          left: -40, // Negative value moves the pie left
-        }}
-        series={[
-          {
-            data: availablePieChartData2.map(item => {
-              if (item.label !== selectedSubCategory && selectedSubCategory) {
-                return { ...item, color: 'gray', };  // Add color property
-              }
-              return { ...item, };  // Keep other objects unchanged
-            }),
-            innerRadius: 40,
-            paddingAngle: 0,
-            cornerRadius: 3,
-            outerRadius: 80,
-          },
-        ]}
-        width={340}
-        height={210}
-        colors={[
-          '#AA0815',
-          '#EF5322',
-          '#F0B41C',
-          '#49B6A9',
-          '#3D9BE1',
-          '#263793',
-          '#4B0A80',
-          '#36454F',
-          '#00919E',
-          '#45B8A7'
-        ]}
-        slotProps={{
-          legend: {
-            labelStyle: {
-              fontSize: 10,
-              fill: 'black',
+      {selectedCategory !== undefined
+        ? <PieChart
+          sx={{ '&&': { touchAction: 'auto' } }}
+          margin={{
+            left: -40, // Negative value moves the pie left
+          }}
+          series={[
+            {
+              data: secondaryOptions.map(item => {
+                if (item.label !== selectedSubCategory && selectedSubCategory) {
+                  return { ...item, color: 'gray', };  // Add color property
+                }
+                return { ...item, };  // Keep other objects unchanged
+              }),
+              innerRadius: 40,
+              paddingAngle: 0,
+              cornerRadius: 3,
+              outerRadius: 80,
             },
-            position: { vertical: 'middle', horizontal: 'right' },
-            padding: 0,
-          },
-        }}
-        tooltip={{ trigger: 'none' }}
-        onItemClick={onSubCatClick}
-      /> : <></>}
+          ]}
+          width={340}
+          height={210}
+          colors={colors.pieChart}
+          slotProps={{
+            legend: {
+              labelStyle: {
+                fontSize: 10,
+                fill: 'black',
+              },
+              position: { vertical: 'middle', horizontal: 'right' },
+              padding: 0,
+            },
+          }}
+          tooltip={{ trigger: 'none' }}
+          onItemClick={onSubCatClick}
+        />
+        : <></>}
     </Box>
   );
 }

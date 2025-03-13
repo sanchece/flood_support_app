@@ -84,22 +84,20 @@ function getCellColor(value: string) {
 export function ResourcesTable({
   content,
   selectedCategory,
-  allData,
+  selectedSubCategory,
+  selectedTableData,
   state,
-  selectedSubCategory }) {
-  const { Table1: tableHeaders, stateLabel } = content
-  const selectedStatus = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
-  const filteredTableData = selectedSubCategory ? allData.filter(row => selectedStatus.includes(row.state) && row.category2 === selectedSubCategory) :
-    selectedCategory ? allData.filter(row => row.category1 === selectedCategory && selectedStatus.includes(row.state))
-      : allData.filter(row => selectedStatus.includes(row.state));
-
-  const [data, setData] = useState(filteredTableData);
+}) {
+  const [data, setData] = useState(selectedTableData);
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = useState('state');
   const [expandedRows, setExpandedRows] = useState({});
+  const { Table1: tableHeaders, stateLabel } = content
+
   useEffect(() => {
-    setData(filteredTableData);
+    setData(selectedTableData);
   }, [selectedCategory, selectedSubCategory, state, content]);
+
   // Sorting function
   const handleSort = (property) => () => {
     const isAsc = orderBy === property && order === 'asc';
@@ -122,18 +120,17 @@ export function ResourcesTable({
       [index]: !prev[index],
     }));
   };
+
   return (
     <TableContainer sx={{ maxHeight: 450, border: 1, borderColor: colors.defaultIcon }} >
       <Table>
         <TableHead sx={{
         }}>
           <TableRow sx={{
-
             position: 'sticky',
             top: 0,
-            backgroundColor: selectedCategory === null ? colors.bodyButton1 : colors.bodyButton2,
+            backgroundColor: selectedCategory === undefined ? colors.bodyButton1 : colors.bodyButton2,
             zIndex: 1,
-
           }}>
             <TableCell sx={{ width: '30%' }}>
               <TableSortLabel
@@ -165,12 +162,11 @@ export function ResourcesTable({
                 <Typography variant="body2" sx={{ fontWeight: 600 }}> {state === true ? tableHeaders.whoHas : tableHeaders.whoNeed} </Typography>
               </TableSortLabel>
             </TableCell>
-            {/* <TableCell sx={{width:'5%'}}/>  */}
           </TableRow>
         </TableHead>
         <TableBody sx={{
-          backgroundColor: 'white', // Transparent header
-          border: .7, // No borders
+          backgroundColor: 'white',
+          border: .7,
           borderColor: '#d9d9d9',
         }}>
           {data.map((row, index) => (
@@ -181,14 +177,14 @@ export function ResourcesTable({
                 </TableCell>
                 <TableCell><Typography variant="body2"> {row.item} </Typography></TableCell>
                 <TableCell><Typography variant="body2"> {row.who}
-                  <IconButton sx={{ backgroundColor: '#906131', ml: 1, p: .1, color: 'white' }} onClick={() => handleExpand(index)}>
+                  <IconButton sx={{ backgroundColor: colors.tableExpandIcon, ml: 1, p: .1, color: 'white' }} onClick={() => handleExpand(index)}>
                     {expandedRows[index] ? <ExpandLess /> : <ExpandMore />}
                   </IconButton> </Typography>
                 </TableCell>
               </TableRow>
               {expandedRows[index] && (
                 <TableRow sx={{
-                  backgroundColor: '#d9d9d9', // Transparent header
+                  backgroundColor: colors.tableExpandedRow,
                 }}>
                   <TableCell ><Link
                     color="inherit"
@@ -203,7 +199,6 @@ export function ResourcesTable({
                       target="_blank">
                       <Typography variant="body2"> {row.contact} </Typography>
                     </Link></TableCell>
-
                   <TableCell colSpan={2}> <Typography variant="body2"> {row.how} </Typography></TableCell>
                 </TableRow>
               )}

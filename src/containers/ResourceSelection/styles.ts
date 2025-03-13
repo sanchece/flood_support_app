@@ -17,3 +17,19 @@ export const mainCatIcons = (selectedCategory) => {
         flexDirection: 'column'
     }
 }
+
+export const mainCatIconsContainer =
+{
+    display: 'flex',
+    flexDirection: 'row',
+    width: '90%',
+    height: '6rem'
+
+}
+export const resourceSelectionContainer =
+{
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    alignItems: 'center',
+}
