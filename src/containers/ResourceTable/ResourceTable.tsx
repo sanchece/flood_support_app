@@ -81,7 +81,7 @@ function getCellColor(value: string) {
   return color;
 }
 
-export function UrgentNeeds({
+export function ResourcesTable({
   content,
   selectedCategory,
   allData,
@@ -215,4 +215,4 @@ export function UrgentNeeds({
   );
 }
 
-export default UrgentNeeds;
+export default ResourcesTable;

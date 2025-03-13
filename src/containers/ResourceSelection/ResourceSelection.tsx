@@ -44,7 +44,7 @@ function countItems(data, label, keyForCondition, validKeyValues) {
   return result;
 }
 
-export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory, setSelectedCategory, selectedCategory, state, allData }) {
+export function ResourceSelection({ setSelectedSubCategory, selectedSubCategory, setSelectedCategory, selectedCategory, state, allData }) {
   const selectedState = state ? dataProperties.availableStatus : dataProperties.unavailableStatus;
   const filteredTableData = selectedCategory
     ? allData.filter(row => row.category1 === selectedCategory && selectedState.includes(row.state))
@@ -53,8 +53,8 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
   const availablePieChartData2 = countItems(filteredTableData, 'category2', 'category1', [selectedCategory]);
 
   const onSubCatClick = (event, params) => {
-    if (selectedSubCategory !== null && selectedSubCategory === availablePieChartData2[params.dataIndex].label) {
-      setSelectedSubCategory(null)
+    if (selectedSubCategory !== undefined && selectedSubCategory === availablePieChartData2[params.dataIndex].label) {
+      setSelectedSubCategory(undefined)
     }
     else {
       setSelectedSubCategory(availablePieChartData2[params.dataIndex].label)
@@ -76,10 +76,10 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
             sx={mainCatIcons(selectedCategory === button.label)}
             onClick={() => {
               if (selectedCategory === button.label) {
-                setSelectedCategory(null)
+                setSelectedCategory(undefined)
               } else {
                 setSelectedCategory(button.label)
-                setSelectedSubCategory(null)
+                setSelectedSubCategory(undefined)
               }
             }
             }
@@ -90,7 +90,7 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
           </Button>
         ))}
       </Box>
-      {selectedCategory !== null ? <PieChart
+      {selectedCategory !== undefined ? <PieChart
         sx={{ '&&': { touchAction: 'auto' }}}
         margin={{
           left: -40, // Negative value moves the pie left
@@ -140,4 +140,4 @@ export function ResourcesPieChart({ setSelectedSubCategory, selectedSubCategory,
   );
 }
 
-export default ResourcesPieChart;
+export default ResourceSelection;

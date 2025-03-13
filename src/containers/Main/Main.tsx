@@ -1,32 +1,31 @@
 import {
-    Alert,
     Button,
-    AlertTitle,
     Box,
-    CircularProgress,
     Container,
     Typography,
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 
 import { MainPage } from '../../globalConstants'
-import { ResourcesPieChart } from '../PieChart'
-import { UrgentNeeds } from '../UrgentNeeds'
+import { ResourceSelection } from '../ResourceSelection'
+import { ResourcesTable } from '../ResourceTable'
 import { fetchData } from '../../api'
 import {
-    pieChartWrapperStyles,
-    mainContainerStyles,
-    headerNoneButtonStyles,
     headerButtonStyles,
+    headerNoneButtonStyles,
+    mainButtonStyling,
+    mainContainerStyles,
+    pieChartWrapperStyles,
     tableWrapperStyles,
-} from "./Main.styles";
+} from './Main.styles';
+import { AlertComponent, LoadingComponent } from './components'
 
 import available from '../../assets/available.svg'
 import need from '../../assets/need.svg'
 
 export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boolean }) {
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(undefined);
+    const [selectedSubCategory, setSelectedSubCategory] = useState(undefined);
     const [selectedState, setSelectedState] = useState(undefined);
     const [completeData, setCompleteData] = useState({ es: [], en: [] });
     const [loading, setLoading] = useState(false);
@@ -37,37 +36,18 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     }, []);
 
     useEffect(() => {
-        setSelectedCategory(null);
-        setSelectedSubCategory(null);
+        setSelectedCategory(undefined);
+        setSelectedSubCategory(undefined);
     }, [isSpanish]);
 
     const data = isSpanish ? completeData.es : completeData.en;
+    const isGiveSelected = selectedState === false ? true : false;
 
-    const AlertComponent = (
-        <Container maxWidth='lg' sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            mt: 6,
-            p: { xs: 0, md: 'inherit' },
-        }}>
-            <Alert severity="warning" sx={{ display: 'flex', m: 5 }}>
-                <AlertTitle> Whoops :/</AlertTitle>
-                For some reason the data fetch failed. Please try again later.
-            </Alert>
-        </Container>
-    )
-
-    const LoadingComponent = (
-        <Container maxWidth='lg' sx={{
-            display: 'flex',
-            mt: 15,
-            p: { xs: 0, md: 'inherit' },
-            justifyContent: 'center',
-
-        }}>
-            <CircularProgress thickness={4} sx={{ color: 'black' }} size={80} />
-        </Container >
-    )
+    const handleMainButtonClick = (state) => (event) => {
+        setSelectedCategory(undefined)
+        setSelectedState(state)
+        setSelectedSubCategory(undefined)
+    }
 
     // Render based on state
     if (loading) return LoadingComponent;
@@ -76,53 +56,40 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
         <Container maxWidth='lg' sx={mainContainerStyles}>
             <Box sx={pieChartWrapperStyles}>
                 <Typography align="center" variant='h5' sx={headerNoneButtonStyles}>{content.Header1} </Typography>
-                <Button
-                    onClick={() => {
-                        setSelectedState(true)
-                        setSelectedCategory(null)
-                        setSelectedSubCategory(null)
-                    }}
-                    sx={headerButtonStyles(selectedState)}
-                >
-                    <img src={available} alt={''} width={35} height={35} />
-                    <Typography sx={{ opacity: 0.65, ml: 4, fontWeight: selectedState ? 600 : 400 }} variant={'body1'}>{content.button1}</Typography>
+                <Button onClick={handleMainButtonClick(true)} sx={headerButtonStyles(selectedState)} >
+                    <img src={available} alt={'Available Icon'} width={35} height={35} />
+                    <Typography sx={mainButtonStyling} variant={'body1'}>{content.button1}</Typography>
                 </Button>
-                <Button
-                    onClick={() => {
-                        setSelectedState(false)
-                        setSelectedCategory(null)
-                        setSelectedSubCategory(null)
-                    }}
-                    sx={{ ...headerButtonStyles(selectedState === false), mt: 2 }}
-                >
-                    <img src={need} alt={''} width={35} height={35} />
-                    <Typography sx={{ opacity: 0.65, ml: 4, fontWeight: selectedState === false ? 600 : 400 }} variant={'body1'}>{content.button2}</Typography>
+                <Button onClick={handleMainButtonClick(false)} sx={{ ...headerButtonStyles(isGiveSelected), mt: 2 }}>
+                    <img src={need} alt={'Need Icon'} width={35} height={35} />
+                    <Typography sx={mainButtonStyling} variant={'body1'}>{content.button2}</Typography>
                 </Button>
                 {selectedState !== undefined ?
                     <Box sx={{ pieChartWrapperStyles }}>
-                        <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 4 }}>{selectedState === true ? content.Header3 : content.Header2} </Typography>
-                        <ResourcesPieChart
-                            setSelectedSubCategory={setSelectedSubCategory}
+                        <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 4 }}>{selectedState ? content.Header3 : content.Header2} </Typography>
+                        <ResourceSelection
+                            allData={data}
+                            selectedCategory={selectedCategory}
                             selectedSubCategory={selectedSubCategory}
                             setSelectedCategory={setSelectedCategory}
-                            selectedCategory={selectedCategory}
-                            allData={data}
+                            setSelectedSubCategory={setSelectedSubCategory}
                             state={selectedState} />
-                    </Box> : <></>}
+                    </Box> : <></>
+                }
             </Box>
+
             {selectedState !== undefined ?
                 <Box
                     sx={tableWrapperStyles}>
-                    {/* <Typography variant='h6' sx={{ m: 1, mt: 0, fontWeight: '700', color: selectedState ? 'green' :  'red' }} >{content.Header2}</Typography> */}
-                    <UrgentNeeds
+                    <ResourcesTable
+                        allData={data}
                         content={content}
                         selectedCategory={selectedCategory}
-                        allData={data}
-                        state={selectedState}
                         selectedSubCategory={selectedSubCategory}
+                        state={selectedState}
                     />
-                </Box>
-                : <></>}
+                </Box> : <></>
+            }
         </Container >
     );
 }

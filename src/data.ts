@@ -59,7 +59,7 @@ const availableCount =[
     },
 ]
 
-export const urgentNeeds: any = [
+export const ResourcesTable: any = [
     {
         "datePosted": "2025-02-24",
         "organization": "UNI",

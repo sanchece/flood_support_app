@@ -40,7 +40,7 @@ export const headerButtonStyles = (selectedState) => {
         textTransform: 'none',
         justifyContent: 'flex-start',
         py: 0,
-        px:4,
+        px: 4,
         backgroundColor: selectedState ? colors.bodyButton1 : colors.bodyButton2,
         border: selectedState ? 3 : 1,
         borderColor: selectedState ? colors.bodyButton1Border : colors.bodyButton2Border,
@@ -48,7 +48,7 @@ export const headerButtonStyles = (selectedState) => {
         height: '6rem',
         width: '90%',
         display: 'flex',
-        borderRadius: 6,     
+        borderRadius: 6,
     }
 }
 
@@ -60,4 +60,12 @@ export const tableWrapperStyles =
     alignItems: 'center',
     m: { xs: 0, md: 2 },
     pb: 4, pt: 3,
+}
+
+export const mainButtonStyling = (selectedState) => {
+    return {
+        opacity: 0.65,
+        ml: 4,
+        fontWeight: selectedState ? 600 : 400
+    }
 }
