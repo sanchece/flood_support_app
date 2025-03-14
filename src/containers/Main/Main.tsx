@@ -26,7 +26,6 @@ import need from '../../assets/need.svg'
 
 
 export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boolean }) {
-    const [mapPoints, setMapPoints] = useState(undefined);
     const [selectedMapPoint, setSelectedMapPoint] = useState(undefined);
     const [selectedCategory, setSelectedCategory] = useState(undefined);
     const [selectedSubCategory, setSelectedSubCategory] = useState(undefined);
@@ -36,7 +35,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        fetchData(setLoading, setCompleteData, setError, setMapPoints);
+        fetchData(setLoading, setCompleteData, setError);
     }, []);
 
     useEffect(() => {
@@ -49,9 +48,9 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
 
     const selectedStatusOptions = selectedState ? dataProperties.availableStatus : dataProperties.unavailableStatus; // used to filter data 
     // selected table data - filtered by cat 1,cat2, state OR cat1, state OR just state
-    const selectedTableData = selectedMapPoint !==undefined
-    ? data.filter(row => selectedStatusOptions.includes(row.state) && row.who === selectedMapPoint.who)
-     : selectedSubCategory
+    const selectedTableData = selectedMapPoint !== undefined
+        ? data.filter(row => selectedStatusOptions.includes(row.state) && row.who === selectedMapPoint.who)
+        : selectedSubCategory
             ? data.filter(row => selectedStatusOptions.includes(row.state) && row.category1 === selectedCategory && row.category2 === selectedSubCategory)
             : selectedCategory
                 ? data.filter(row => selectedStatusOptions.includes(row.state) && row.category1 === selectedCategory)
@@ -94,8 +93,9 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                             selectedSubCategory={selectedSubCategory}
                             setSelectedCategory={setSelectedCategory}
                             setSelectedSubCategory={setSelectedSubCategory}
+                            setSelectedMapPoint={setSelectedMapPoint}
                         />
-                        
+
                     </Box> : <></>
                 }
             </Box>
@@ -111,13 +111,16 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                         selectedMapPoint={selectedMapPoint}
                     />
                     <CustomMap
-                        mapPoints={mapPoints}
+                        content={content}
                         selectedMapPoint={selectedMapPoint}
                         setSelectedMapPoint={setSelectedMapPoint}
-                    /> 
+                        selectedTableData={selectedTableData}
+                        setSelectedSubCategory={setSelectedSubCategory}
+                        setSelectedCategory={setSelectedCategory}
+                    />
                 </Box> : <></>
             }
-             
+
         </Container >
     );
 }

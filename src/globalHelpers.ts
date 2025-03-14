@@ -1,5 +1,5 @@
 
-export function getUniqueOrgs(mapData, who) {
+export function filterData(mapData, who) {
     const seen = new Set();
     return mapData.reduce((result, item) => {
         if (!seen.has(item[who])) {

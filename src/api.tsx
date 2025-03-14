@@ -1,7 +1,7 @@
-import { getUniqueOrgs } from './globalHelpers'
+import { filterData } from './globalHelpers'
 const baseUrl = process.env.API_URL;
 
-export const fetchData = async (setLoading, setCompleteData, setError, setMapPoints) => {
+export const fetchData = async (setLoading, setCompleteData, setError) => {
   setError(false);
   setLoading(true);
   const url = `${baseUrl}/getData`;
@@ -28,11 +28,8 @@ export const fetchData = async (setLoading, setCompleteData, setError, setMapPoi
     if (!data.en || !data.es) {
       throw new Error('Invalid data: Missing required fields (en or es)');
     }
-
+    
     setCompleteData(data);
-    const mapData = data.en
-    const orgData = getUniqueOrgs(mapData, 'who')
-    setMapPoints(orgData)
   } catch (err) {
     setError(err.message);
   } finally {

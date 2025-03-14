@@ -55,11 +55,13 @@ export function ResourceSelection({
   selectedCategory,
   allData,
   selectedStatusOptions,
+  setSelectedMapPoint,
 }) {
   const iconButtonOptions = countItems(allData, 'category1', 'state', selectedStatusOptions);
   const secondaryOptions = countItems(allData, 'category2', 'category1', [selectedCategory]);
 
   const onMainCatClick = (button) => () => {
+    setSelectedMapPoint(undefined)
     if (selectedCategory === button.label) {
       setSelectedCategory(undefined)
     } else {
@@ -69,6 +71,7 @@ export function ResourceSelection({
   };
 
   const onSubCatClick = (event, params) => {
+    setSelectedMapPoint(undefined)
     if (selectedSubCategory !== undefined && selectedSubCategory === secondaryOptions[params.dataIndex].label) {
       setSelectedSubCategory(undefined)
     } else {
@@ -95,7 +98,7 @@ export function ResourceSelection({
         ? <PieChart
           sx={{ '&&': { touchAction: 'auto' } }}
           margin={{
-            left: -40, // Negative value moves the pie left
+            left: -50, // Negative value moves the pie left
           }}
           series={[
             {
@@ -111,8 +114,8 @@ export function ResourceSelection({
               outerRadius: 80,
             },
           ]}
-          width={340}
-          height={210}
+          width={350}
+          height={240}
           colors={colors.pieChart}
           slotProps={{
             legend: {

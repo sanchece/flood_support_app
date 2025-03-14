@@ -27,6 +27,8 @@ export interface MainPage {
   stateLabel: any,
   button1: string,
   button2: string,
+  mapDefaultText: string,
+
 }
 
 export interface ImpactedPage {
@@ -97,7 +99,8 @@ export const appContent: LanguageType = {
         1: 'Available',
         2: 'Low Supply',
         3: 'Urgent',
-      }
+      },
+      mapDefaultText: 'Click a pin',
     },
     impactedPage: {
       header: "Were you impacted by the flood?",
@@ -145,7 +148,8 @@ export const appContent: LanguageType = {
         1: 'Disponible',
         2: 'Poca Disponibilidad',
         3: 'Se Necesita'
-      }
+      },
+      mapDefaultText: 'Haga clic en una ubicación',
 
     },
     impactedPage: {
@@ -183,7 +187,7 @@ export const colors = {
   navMenuButton: '#f8f8f2',
   secondaryIcons: '#d9d9d9',
   tableExpandIcon: '#906131',
-  tableExpandedRow:'#d9d9d9',
+  tableExpandedRow: '#d9d9d9',
   status3: '#ff3131',
   status2: '#f67e34',
   status1: '#00bf63',
