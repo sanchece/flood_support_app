@@ -28,6 +28,7 @@ export interface MainPage {
   button1: string,
   button2: string,
   mapDefaultText: string,
+  mapZoom: string,
 
 }
 
@@ -100,7 +101,8 @@ export const appContent: LanguageType = {
         2: 'Low Supply',
         3: 'Urgent',
       },
-      mapDefaultText: 'Click a pin',
+      mapDefaultText: 'Click a pin.',
+      mapZoom: 'Double tap to zoom in.',
     },
     impactedPage: {
       header: "Were you impacted by the flood?",
@@ -150,7 +152,7 @@ export const appContent: LanguageType = {
         3: 'Se Necesita'
       },
       mapDefaultText: 'Haga clic en una ubicación',
-
+      mapZoom: 'Toque dos veces para ampliar.',
     },
     impactedPage: {
       header: "¿Fue usted afectado por la inundación?"

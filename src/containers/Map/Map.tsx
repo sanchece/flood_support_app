@@ -34,12 +34,11 @@ export const CustomMap = ({
     };
     const selectedTableDataOrgs = filterData(selectedTableData, 'who')
     return (
-        <Container disableGutters sx={{ p: 0, my: 2, width: '100%', position: 'relative' }}>
+        <Container disableGutters sx={{ p: 0, mt: 6, width: '100%', position: 'relative' }}>
             <Box
                 sx={{
                     position: 'absolute',
                     backgroundColor: fontColor.bodyHeaders,
-                    // backgroundColor: "rgba(0, 0, 0, 0.7)",
                     color: 'white',
                     p: 1,
                     width: '30%',
@@ -50,7 +49,7 @@ export const CustomMap = ({
 
                 }}
             >
-                {selectedMapPoint === undefined ? <Typography sx={{ fontWeight: 600 }} variant="body1"> {mapDefaultText}</Typography> :
+                {selectedMapPoint === undefined ? <Typography sx={{ fontWeight: 600 }} variant="body1"> {mapDefaultText} Double tap to zoom in.</Typography> :
                     <>
                         <Typography sx={{ fontWeight: 600 }} variant="body1"> {selectedMapPoint.who} </Typography>
                         <Link
@@ -59,6 +58,9 @@ export const CustomMap = ({
                             target="_blank">
                             <Typography variant="body1"> {selectedMapPoint.address} </Typography>
                         </Link>
+                        <Typography sx={{ pt:1 }} variant="body1">{content.mapZoom}
+                        </Typography>
+
                     </>
                 }
             </Box>
