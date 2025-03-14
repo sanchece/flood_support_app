@@ -1,0 +1,61 @@
+import {
+    Button,
+    Box,
+    Container,
+    Typography,
+    Link,
+} from "@mui/material";
+import { Map, Marker } from "pigeon-maps"
+import { fontColor } from '../../globalConstants'
+
+import { createGoogleMapLink } from '../../globalHelpers'
+
+
+export const CustomMap = ({ mapPoints, selectedMapPoint, setSelectedMapPoint }) => {
+    // Handle marker click to toggle tooltip visibility
+    const handleMarkerClick = (pointInfo) => () => {
+        setSelectedMapPoint(pointInfo)
+
+    };
+    return (
+        <Container disableGutters sx={{ p: 0, my: 2, width: '100%', position: 'relative' }}>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    backgroundColor: fontColor.bodyHeaders,
+                    // backgroundColor: "rgba(0, 0, 0, 0.7)",
+                    color: 'white',
+                    p: 1,
+                    width: '30%',
+                    borderRadius: 2,
+                    left: { xs: 10, sm: 10 },
+                    top: 10,
+                    zIndex: 7,
+
+                }}
+            >
+                {selectedMapPoint === undefined ? <Typography sx={{ fontWeight: 600 }} variant="body1"> Select a pin  </Typography> :
+                    <>
+                        <Typography sx={{ fontWeight: 600 }} variant="body1"> {selectedMapPoint.who} </Typography>
+                        <Link
+                            color="inherit"
+                            href={createGoogleMapLink(selectedMapPoint)}
+                            target="_blank">
+                            <Typography variant="body1"> {selectedMapPoint.address} </Typography>
+                        </Link>
+                    </>
+                }
+            </Box>
+            <>
+                <Map height={300} defaultCenter={[42.316477834989165, -83.1077980407536]} defaultZoom={12}>
+                    {mapPoints.map((org) => {
+                        if (org.coordinates !== 'Unknown') {
+                            const coords = JSON.parse(org.coordinates)
+                            return (<Marker color={"green"} key={org.who} width={45} anchor={coords} onClick={handleMarkerClick(org)} />)
+                        }
+                    })}
+                </Map>
+            </>
+        </Container>
+    )
+}

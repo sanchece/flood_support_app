@@ -54,11 +54,10 @@ export function ResourceSelection({
   setSelectedCategory,
   selectedCategory,
   allData,
-  selectedTableData,
   selectedStatusOptions,
 }) {
   const iconButtonOptions = countItems(allData, 'category1', 'state', selectedStatusOptions);
-  const secondaryOptions = countItems(selectedTableData, 'category2', 'category1', [selectedCategory]);
+  const secondaryOptions = countItems(allData, 'category2', 'category1', [selectedCategory]);
 
   const onMainCatClick = (button) => () => {
     if (selectedCategory === button.label) {
@@ -70,7 +69,7 @@ export function ResourceSelection({
   };
 
   const onSubCatClick = (event, params) => {
-    if (selectedSubCategory !== undefined && selectedSubCategory === iconButtonOptions[params.dataIndex].label) {
+    if (selectedSubCategory !== undefined && selectedSubCategory === secondaryOptions[params.dataIndex].label) {
       setSelectedSubCategory(undefined)
     } else {
       setSelectedSubCategory(secondaryOptions[params.dataIndex].label)

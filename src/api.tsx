@@ -1,5 +1,7 @@
+import { getUniqueOrgs } from './globalHelpers'
 const baseUrl = process.env.API_URL;
-export const fetchData = async (setLoading, setCompleteData, setError) => {
+
+export const fetchData = async (setLoading, setCompleteData, setError, setMapPoints) => {
   setError(false);
   setLoading(true);
   const url = `${baseUrl}/getData`;
@@ -13,7 +15,7 @@ export const fetchData = async (setLoading, setCompleteData, setError) => {
       },
     });
     const data = await response.json(); // need to convert it into js object otherwise not usable
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -28,6 +30,9 @@ export const fetchData = async (setLoading, setCompleteData, setError) => {
     }
 
     setCompleteData(data);
+    const mapData = data.en
+    const orgData = getUniqueOrgs(mapData, 'who')
+    setMapPoints(orgData)
   } catch (err) {
     setError(err.message);
   } finally {

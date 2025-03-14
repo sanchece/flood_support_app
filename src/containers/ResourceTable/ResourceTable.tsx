@@ -16,12 +16,8 @@ import {
 import { Link } from "@mui/material";
 
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { dataProperties, colors } from '../../globalConstants'
-
-function createGoogleMapLink(address: string) {
-  var encodedAddress = encodeURIComponent(address); // Encode address for URL
-  return "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
-}
+import { colors } from '../../globalConstants'
+import { createGoogleMapLink } from '../../globalHelpers'
 
 function getCellLink(column: string, value: string) {
   let link = '';
@@ -87,6 +83,7 @@ export function ResourcesTable({
   selectedSubCategory,
   selectedTableData,
   state,
+  selectedMapPoint,
 }) {
   const [data, setData] = useState(selectedTableData);
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
@@ -96,7 +93,7 @@ export function ResourcesTable({
 
   useEffect(() => {
     setData(selectedTableData);
-  }, [selectedCategory, selectedSubCategory, state, content]);
+  }, [selectedCategory, selectedSubCategory, state, content,selectedMapPoint ]);
 
   // Sorting function
   const handleSort = (property) => () => {
