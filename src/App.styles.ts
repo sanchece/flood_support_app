@@ -9,8 +9,9 @@ export const appWrapperStyles: SxProps = {
 
 export const graftLivingStudiosTheme = createTheme({
   typography: {
-    fontFamily: 'Montserrat, Open Sans',
+    fontFamily:'Montserrat',
     h5: {
+      fontFamily: 'Montserrat',
       fontWeight: 600,
       fontSize: 16
     },

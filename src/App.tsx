@@ -2,11 +2,6 @@ import * as React from 'react';
 import { Toolbar, Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Routes, Route } from "react-router";
-import '@fontsource/montserrat';
-import "@fontsource/montserrat/900.css";
-import "@fontsource/montserrat/600.css";
-import "@fontsource/open-sans/600.css";
-import '@fontsource/open-sans'
 import './index.css';
 
 import {
