@@ -1,4 +1,4 @@
-import { tableSortIconStyles } from './styles'
+import { tableSortIconStyles, tableCellStyles } from './styles'
 
 import React, { useEffect, useState } from 'react';
 import {
@@ -9,9 +9,9 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  IconButton,
-  Chip,
+  Button,
   Typography,
+  Paper,
 } from '@mui/material';
 import { Link } from "@mui/material";
 
@@ -93,7 +93,7 @@ export function ResourcesTable({
 
   useEffect(() => {
     setData(selectedTableData);
-  }, [selectedCategory, selectedSubCategory, state, content,selectedMapPoint ]);
+  }, [selectedCategory, selectedSubCategory, state, content, selectedMapPoint]);
 
   // Sorting function
   const handleSort = (property) => () => {
@@ -119,7 +119,7 @@ export function ResourcesTable({
   };
 
   return (
-    <TableContainer sx={{ maxHeight: 450, border: 1, borderColor: colors.defaultIcon }} >
+    <TableContainer sx={{ height: 450, border: 1, borderColor: colors.defaultIcon }} >
       <Table>
         <TableHead sx={{
         }}>
@@ -169,14 +169,28 @@ export function ResourcesTable({
           {data.map((row, index) => (
             <React.Fragment key={index}>
               <TableRow>
-                <TableCell>
-                  <Chip sx={{ width: '100%', backgroundColor: getCellColor(row.state) }} label={<Typography variant="body2"> {getStateLabel(row.state, stateLabel)} </Typography>} />
+                <TableCell sx={tableCellStyles}>
+                  <Paper variant='elevation' sx={{
+                    height: 30, color: 'white', borderRadius: 3,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                    elevation: 24, width: '90%', backgroundColor: getCellColor(row.state)
+                  }}>
+                    <Typography variant="body2"> {getStateLabel(row.state, stateLabel)} </Typography>
+                    {/* <Chip variant='elevation' sx={{ width: '100%',elevation:24, backgroundColor: getCellColor(row.state) }} label={ */}
+                  </Paper>
                 </TableCell>
-                <TableCell><Typography variant="body2"> {row.item} </Typography></TableCell>
-                <TableCell><Typography variant="body2"> {row.who}
-                  <IconButton sx={{ backgroundColor: colors.tableExpandIcon, ml: 1, p: .1, color: 'white' }} onClick={() => handleExpand(index)}>
+                <TableCell sx={tableCellStyles}><Typography variant="body2"> {row.item} </Typography></TableCell>
+                <TableCell sx={tableCellStyles}><Typography variant="body2"> {row.who}
+                  <Button sx={{
+                    backgroundColor: colors.tableExpandIcon,
+                    ml: 1, p: 0, px: 0, minWidth: 0,
+                    borderRadius: 3,
+                    color: 'white',
+                  }} onClick={() => handleExpand(index)}>
                     {expandedRows[index] ? <ExpandLess /> : <ExpandMore />}
-                  </IconButton> </Typography>
+                  </Button> </Typography>
                 </TableCell>
               </TableRow>
               {expandedRows[index] && (

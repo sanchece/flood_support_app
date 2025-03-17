@@ -62,12 +62,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
         setSelectedSubCategory(undefined);
     }
 
-
-
-
-
-
-
     // Render based on state
     if (loading) return LoadingComponent;
     if (error || data.length <= 0) return AlertComponent;
@@ -79,7 +73,9 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     <img src={available} alt={'Available Icon'} width={35} height={35} />
                     <Typography sx={mainButtonStyling} variant={'body1'}>{content.button1}</Typography>
                 </Button>
-                <Button onClick={handleMainButtonClick(false)} sx={{ ...headerButtonStyles(selectedState === false), mt: 2 }}>
+                <Button onClick={handleMainButtonClick(false)}
+                    sx={{ ...headerButtonStyles(selectedState === false), mt: 2}}
+                >
                     <img src={need} alt={'Need Icon'} width={35} height={35} />
                     <Typography sx={mainButtonStyling} variant={'body1'}>{content.button2}</Typography>
                 </Button>
@@ -95,9 +91,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                             setSelectedSubCategory={setSelectedSubCategory}
                             setSelectedMapPoint={setSelectedMapPoint}
                         />
-
-                    </Box> : <></>
-                }
+                    </Box> : <></>}
             </Box>
             {isAnyThingSelected ?
                 <Box

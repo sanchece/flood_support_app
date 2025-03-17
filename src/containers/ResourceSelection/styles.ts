@@ -22,14 +22,37 @@ export const mainCatIconsContainer =
 {
     display: 'flex',
     flexDirection: 'row',
-    width: '90%',
+    width: { xs:'90%', sm: 'auto'},
     height: '6rem'
 
 }
+
 export const resourceSelectionContainer =
 {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
     alignItems: 'center',
+}
+
+export const subCatIconsContainer =
+{
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '70%',
+}
+
+export const subCatSelection = (selectedSubCategory) => {
+    return {
+        px: 1,
+        py: .5,
+        textTransform: 'none',
+        mx: .2,
+        my: .2,
+        color: 'black',
+        backgroundColor: selectedSubCategory ? colors.secondaryIconsSelected : colors.secondaryIcons,
+        display: 'flex',
+        borderRadius: 3,
+    }
 }

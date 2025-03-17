@@ -5,6 +5,8 @@ import {
   mainCatIcons,
   mainCatIconsContainer,
   resourceSelectionContainer,
+  subCatSelection,
+  subCatIconsContainer,
 } from './styles';
 import Food from '../../assets/food.svg'; // Adjust the path accordingly
 import Info from '../../assets/info.svg'; // Adjust the path accordingly
@@ -44,7 +46,6 @@ function countItems(data, label, keyForCondition, validKeyValues) {
     label: category,
     value: count
   }));
-
   return result;
 }
 
@@ -70,12 +71,12 @@ export function ResourceSelection({
     }
   };
 
-  const onSubCatClick = (event, params) => {
+  const onSubCatClick = (button) => () => {
     setSelectedMapPoint(undefined)
-    if (selectedSubCategory !== undefined && selectedSubCategory === secondaryOptions[params.dataIndex].label) {
+    if (selectedSubCategory !== undefined && selectedSubCategory === button.label) {
       setSelectedSubCategory(undefined)
     } else {
-      setSelectedSubCategory(secondaryOptions[params.dataIndex].label)
+      setSelectedSubCategory(button.label)
     }
   };
 
@@ -94,7 +95,20 @@ export function ResourceSelection({
           </Button>
         ))}
       </Box>
-      {selectedCategory !== undefined
+      <Box sx={subCatIconsContainer}>
+        {secondaryOptions.map((button) => (
+          <Button
+            key={button.id}
+            sx={subCatSelection(selectedSubCategory === button.label)}
+            onClick={onSubCatClick(button)}
+          >
+            {/* <img src={iconMap[button.label]} alt={button.label} width={35} height={35} /> */}
+            <Typography variant="body2">{button.label}</Typography>
+
+          </Button>
+        ))}
+      </Box>
+      {/* {selectedCategory !== undefined
         ? <PieChart
           sx={{ '&&': { touchAction: 'auto' } }}
           margin={{
@@ -130,7 +144,7 @@ export function ResourceSelection({
           tooltip={{ trigger: 'none' }}
           onItemClick={onSubCatClick}
         />
-        : <></>}
+        : <></>} */}
     </Box>
   );
 }

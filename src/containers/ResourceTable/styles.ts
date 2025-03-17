@@ -12,3 +12,8 @@ export const tableSortIconStyles =
         color: 'white', // Color when active
     },
 }
+
+export const tableCellStyles = {
+    p:1,
+}
+
