@@ -119,17 +119,17 @@ export function ResourcesTable({
   };
 
   return (
-    <TableContainer sx={{ height: 450, border: 1, borderColor: colors.defaultIcon }} >
+    <TableContainer>
       <Table>
-        <TableHead sx={{
-        }}>
+        <TableHead sx={{ height:'12px'}}>
           <TableRow sx={{
             position: 'sticky',
             top: 0,
-            backgroundColor: selectedCategory === undefined ? colors.bodyButton1 : colors.bodyButton2,
+            backgroundColor: colors.bodyBackground,
             zIndex: 1,
+            height:'12px'
           }}>
-            <TableCell sx={{ width: '30%' }}>
+            <TableCell sx={{p:1, width: '30%' }}>
               <TableSortLabel
                 active={orderBy === 'state'}
                 direction={orderBy === 'state' ? order : 'asc'}
@@ -139,7 +139,7 @@ export function ResourcesTable({
                 <Typography variant="body2" sx={{ fontWeight: 600 }}> {tableHeaders.state} </Typography>
               </TableSortLabel>
             </TableCell>
-            <TableCell sx={{ width: '40%' }}>
+            <TableCell sx={{p:1, width: '40%' }}>
               <TableSortLabel
                 active={orderBy === 'item'}
                 direction={orderBy === 'item' ? order : 'asc'}
@@ -149,7 +149,7 @@ export function ResourcesTable({
                 <Typography variant="body2" sx={{ fontWeight: 600 }}> {tableHeaders.item} </Typography>
               </TableSortLabel>
             </TableCell>
-            <TableCell sx={{ width: '25%' }}>
+            <TableCell sx={{ p:1,width: '25%' }}>
               <TableSortLabel
                 active={orderBy === 'who'}
                 direction={orderBy === 'who' ? order : 'asc'}
@@ -162,9 +162,7 @@ export function ResourcesTable({
           </TableRow>
         </TableHead>
         <TableBody sx={{
-          backgroundColor: 'white',
-          border: .7,
-          borderColor: '#d9d9d9',
+          backgroundColor: 'rgba(255, 255, 255, 0.6)'
         }}>
           {data.map((row, index) => (
             <React.Fragment key={index}>

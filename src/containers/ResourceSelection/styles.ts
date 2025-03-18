@@ -23,8 +23,7 @@ export const mainCatIconsContainer =
     display: 'flex',
     flexDirection: 'row',
     width: { xs:'90%', sm: 'auto'},
-    height: '6rem'
-
+    mb:1,
 }
 
 export const resourceSelectionContainer =

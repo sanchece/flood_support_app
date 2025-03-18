@@ -3,11 +3,12 @@ import {
     Box,
     Container,
     Typography,
+    SvgIcon,
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 
 import { fetchData } from '../../api'
-import { MainPage, dataProperties, fontColor, colors } from '../../globalConstants'
+import { MainPage, dataProperties } from '../../globalConstants'
 import { ResourceSelection } from '../ResourceSelection'
 import { CustomMap } from '../Map'
 import { ResourcesTable } from '../ResourceTable'
@@ -18,12 +19,11 @@ import {
     mainContainerStyles,
     pieChartWrapperStyles,
     tableWrapperStyles,
+    headerIconStyles,
 } from './Main.styles';
 import { AlertComponent, LoadingComponent } from './components'
-
-import available from '../../assets/available.svg'
-import need from '../../assets/need.svg'
-
+import { AvailableIcon } from '../../assets/AvailableIcon'; // Path to your SVG file
+import { NeedIcon } from '../../assets/NeedIcon'; // Path to your SVG file
 
 export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boolean }) {
     const [selectedMapPoint, setSelectedMapPoint] = useState(undefined);
@@ -69,19 +69,27 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
         <Container disableGutters maxWidth='lg' sx={mainContainerStyles}>
             <Box sx={pieChartWrapperStyles}>
                 <Typography align="center" variant='h5' sx={headerNoneButtonStyles}>{content.Header1} </Typography>
-                <Button onClick={handleMainButtonClick(true)} sx={headerButtonStyles(selectedState)} >
-                    <img src={available} alt={'Available Icon'} width={35} height={35} />
-                    <Typography sx={mainButtonStyling} variant={'body1'}>{content.button1}</Typography>
-                </Button>
-                <Button onClick={handleMainButtonClick(false)}
-                    sx={{ ...headerButtonStyles(selectedState === false), mt: 2}}
-                >
-                    <img src={need} alt={'Need Icon'} width={35} height={35} />
-                    <Typography sx={mainButtonStyling} variant={'body1'}>{content.button2}</Typography>
-                </Button>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                       justifyContent: 'space-evenly',
+                       width: '100%',
+
+                }}>
+                    <Button onClick={handleMainButtonClick(true)} sx={headerButtonStyles(selectedState)} >
+                        <AvailableIcon sx={headerIconStyles(selectedState)} />
+                        <Typography sx={mainButtonStyling(selectedState)} variant={'body1'}>{content.button1}</Typography>
+                    </Button>
+                    <Button onClick={handleMainButtonClick(false)}
+                        sx={{ ...headerButtonStyles(selectedState === false) }}
+                    >
+                        <NeedIcon sx={headerIconStyles(selectedState === false)} />
+                        <Typography sx={mainButtonStyling(selectedState === false)} variant={'body1'}>{content.button2}</Typography>
+                    </Button>
+                </Box>
                 {isAnyThingSelected ?
                     <Box sx={{ pieChartWrapperStyles }}>
-                        <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 4 }}>{selectedState ? content.Header3 : content.Header2} </Typography>
+                        <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 2 }}>{selectedState ? content.Header3 : content.Header2} </Typography>
                         <ResourceSelection
                             allData={data}
                             selectedCategory={selectedCategory}
@@ -93,26 +101,38 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                         />
                     </Box> : <></>}
             </Box>
-            {isAnyThingSelected ?
-                <Box
-                    sx={tableWrapperStyles}>
-                    <ResourcesTable
-                        content={content}
-                        selectedCategory={selectedCategory}
-                        selectedTableData={selectedTableData}
-                        selectedSubCategory={selectedSubCategory}
-                        state={selectedState}
-                        selectedMapPoint={selectedMapPoint}
-                    />
-                    <CustomMap
-                        content={content}
-                        selectedMapPoint={selectedMapPoint}
-                        setSelectedMapPoint={setSelectedMapPoint}
-                        selectedTableData={selectedTableData}
-                        setSelectedSubCategory={setSelectedSubCategory}
-                        setSelectedCategory={setSelectedCategory}
-                    />
-                </Box> : <></>
+            {
+                isAnyThingSelected ?
+                    <Box sx={{
+                        display: 'flex',
+                        // flex: 4,
+                        width: {sm:'100%', md:'60%'},
+                        flexDirection: 'column',
+                        m: { xs: 0, md: 2 },
+                        alignItems: 'center',
+                        pt:0,
+                    }}>
+                        <Box
+                            sx={tableWrapperStyles}>
+                            <ResourcesTable
+                                content={content}
+                                selectedCategory={selectedCategory}
+                                selectedTableData={selectedTableData}
+                                selectedSubCategory={selectedSubCategory}
+                                state={selectedState}
+                                selectedMapPoint={selectedMapPoint}
+                            />
+                        </Box>
+                        <CustomMap
+                            content={content}
+                            selectedMapPoint={selectedMapPoint}
+                            setSelectedMapPoint={setSelectedMapPoint}
+                            selectedTableData={selectedTableData}
+                            setSelectedSubCategory={setSelectedSubCategory}
+                            setSelectedCategory={setSelectedCategory}
+                        />
+                    </Box>
+                    : <></>
             }
 
         </Container >

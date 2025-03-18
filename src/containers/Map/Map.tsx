@@ -1,12 +1,11 @@
 import {
-    Button,
     Box,
     Container,
     Typography,
     Link,
 } from "@mui/material";
 import { Map, Marker } from "pigeon-maps"
-import { fontColor } from '../../globalConstants'
+import { fontColor, colors } from '../../globalConstants'
 
 import { createGoogleMapLink, filterData } from '../../globalHelpers'
 
@@ -34,7 +33,11 @@ export const CustomMap = ({
     };
     const selectedTableDataOrgs = filterData(selectedTableData, 'who')
     return (
-        <Container disableGutters sx={{ p: 0, mt: 6, width: '100%', position: 'relative' }}>
+        <Container disableGutters sx={{ 
+            p: 0, mt: 0, width: '100%', position: 'relative' ,
+            border:4,
+            borderColor: colors.defaultIcon,
+            }}>
             <Box
                 sx={{
                     position: 'absolute',
@@ -65,7 +68,7 @@ export const CustomMap = ({
                 }
             </Box>
             <>
-                <Map height={300} defaultCenter={[42.316477834989165, -83.1077980407536]} defaultZoom={12}>
+                <Map height={290} defaultCenter={[42.316477834989165, -83.1077980407536]} defaultZoom={12}>
                     {selectedTableDataOrgs.map((org) => {
                         if (org.coordinates !== 'Unknown') {
                             const coords = JSON.parse(org.coordinates)

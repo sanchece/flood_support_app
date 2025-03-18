@@ -1,6 +1,4 @@
-import { PieChart, } from '@mui/x-charts/PieChart';
 import { Box, Button, Typography } from "@mui/material";
-import { colors } from '../../globalConstants'
 import {
   mainCatIcons,
   mainCatIconsContainer,
@@ -102,49 +100,10 @@ export function ResourceSelection({
             sx={subCatSelection(selectedSubCategory === button.label)}
             onClick={onSubCatClick(button)}
           >
-            {/* <img src={iconMap[button.label]} alt={button.label} width={35} height={35} /> */}
             <Typography variant="body2">{button.label}</Typography>
-
           </Button>
         ))}
       </Box>
-      {/* {selectedCategory !== undefined
-        ? <PieChart
-          sx={{ '&&': { touchAction: 'auto' } }}
-          margin={{
-            left: -50, // Negative value moves the pie left
-          }}
-          series={[
-            {
-              data: secondaryOptions.map(item => {
-                if (item.label !== selectedSubCategory && selectedSubCategory) {
-                  return { ...item, color: 'gray', };  // Add color property
-                }
-                return { ...item, };  // Keep other objects unchanged
-              }),
-              innerRadius: 40,
-              paddingAngle: 0,
-              cornerRadius: 3,
-              outerRadius: 80,
-            },
-          ]}
-          width={350}
-          height={240}
-          colors={colors.pieChart}
-          slotProps={{
-            legend: {
-              labelStyle: {
-                fontSize: 10,
-                fill: 'black',
-              },
-              position: { vertical: 'middle', horizontal: 'right' },
-              padding: 0,
-            },
-          }}
-          tooltip={{ trigger: 'none' }}
-          onItemClick={onSubCatClick}
-        />
-        : <></>} */}
     </Box>
   );
 }
