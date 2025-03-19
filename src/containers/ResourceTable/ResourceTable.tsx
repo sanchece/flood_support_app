@@ -89,7 +89,7 @@ export function ResourcesTable({
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = useState('state');
   const [expandedRows, setExpandedRows] = useState({});
-  const { Table1: tableHeaders, stateLabel } = content
+  const { Table1: tableHeaders } = content
 
   useEffect(() => {
     setData(selectedTableData);
@@ -97,7 +97,7 @@ export function ResourcesTable({
 
   // Sorting function
   const handleSort = (property) => () => {
-    const isAsc = orderBy === property && order === 'asc';
+    const isAsc = (orderBy === property && order === 'asc') || property === 'important';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
 
@@ -129,7 +129,17 @@ export function ResourcesTable({
             zIndex: 1,
             height: '12px'
           }}>
-            <TableCell sx={{ p: 1, pl: 10, width: '40%' }}>
+            {/* <TableCell sx={{ p: 1}}>
+              <TableSortLabel
+                active={orderBy === 'important'}
+                direction={orderBy === 'important' ? order : 'asc'}
+                onClick={handleSort('important')}
+              sx={tableSortIconStyles}
+              >
+                
+              </TableSortLabel>
+            </TableCell> */}
+            <TableCell sx={{ p: 1, pl: 13, width: '40%' }}>
               <TableSortLabel
                 active={orderBy === 'item'}
                 direction={orderBy === 'item' ? order : 'asc'}
@@ -139,7 +149,7 @@ export function ResourcesTable({
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{tableHeaders.item} </Typography>
               </TableSortLabel>
             </TableCell>
-            <TableCell sx={{ p: 1, width: '25%' }}>
+            <TableCell sx={{ p: 1, pl: 2, width: '20%' }}>
               <TableSortLabel
                 active={orderBy === 'who'}
                 direction={orderBy === 'who' ? order : 'asc'}
@@ -158,15 +168,23 @@ export function ResourcesTable({
             <React.Fragment key={index}>
               <TableRow>
                 <TableCell sx={{ ...tableCellStyles, pl: 5 }}>
-                  {/* <Paper variant='elevation' sx={{
-                    height: 30, color: 'white', borderRadius: 3,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    display: 'flex',
-                    elevation: 24, width: '90%', backgroundColor: getCellColor(row.state)
-                  }}> */}
-                  <Typography variant="subtitle1"> {row.item} </Typography>
-                  {/* </Paper> */}
+                  {
+                    row.important === 'TRUE' ?
+                      (<Paper variant='elevation' sx={{
+                        height: 30, color: 'white', borderRadius: 3,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        display: 'flex',
+                        elevation: 24,
+                        backgroundColor: 'red',
+                        p: 0, width: 150,
+                      }}>
+                        <Typography variant="subtitle1"> {row.item} </Typography>
+                      </Paper>
+                      ) : (
+                        <Typography variant="subtitle1"> {row.item}</Typography>
+                      )
+                  }
                 </TableCell>
                 <TableCell sx={tableCellStyles}><Typography variant="subtitle1"> {row.who}
                   <Button sx={{
@@ -181,9 +199,9 @@ export function ResourcesTable({
               </TableRow>
               {expandedRows[index] && (
                 <TableRow sx={{
-                  backgroundColor: colors.tableExpandedRow,
+                  backgroundColor: row.important === 'TRUE' ? '#e4c9a8' : colors.tableExpandedRow,
                 }}>
-                  <TableCell colSpan={1}> <Typography variant="subtitle1"> {row.how} </Typography></TableCell>
+                  <TableCell colSpan={1}> <Typography variant="subtitle1" sx= {{ whiteSpace: 'pre-line'}}> {row.how} </Typography></TableCell>
                   <TableCell colSpan={2} >
                     <Link
                       color="inherit"

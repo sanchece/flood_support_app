@@ -39,16 +39,19 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                 <Toolbar disableGutters>
                     {/* large screen components *************************************/}
                     <Typography
-                        variant="h4"
+                        variant="h5"
+                        noWrap
                         component="a"
                         href="/"
                         sx={{
+                            mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            color: colors.navMain,
+                            // flexGrow: 1,
+                            color: 'inherit',
                             textDecoration: 'none',
+                            fontSize: 27
                         }}
-                    >
-                        {content.headerTitle}
+                    > {content.headerTitle}
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', }}>
                         {pages.map((page) => (
@@ -66,7 +69,7 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                                 }}
                                 href={content?.[page].url}
                             >
-                                {content?.[page].label}
+                                <Typography variant={'body1'} sx={{ fontSize: 16 }}> {content?.[page].label}</Typography>
                             </Button>
                         ))}
                     </Box>
@@ -138,7 +141,8 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                             fontSize: { xs: '12px', md: '16px' },
                             fontFamily: 'Open Sans'
                         }}
-                    >{content.languageButton}
+                    >
+                        <Typography variant={'body1'} sx={{ fontSize: 16 }}> {content.languageButton}</Typography>
                     </Button>
                 </Toolbar>
             </Container>

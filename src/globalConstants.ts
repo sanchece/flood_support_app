@@ -164,13 +164,13 @@ export const appContent: LanguageType = {
 } as const;
 
 export interface dataPropertiesType {
-  availableStatus: [string, string];
+  availableStatus: [string];
   unavailableStatus: [string];
 }
 
 export const dataProperties: dataPropertiesType = {
-  availableStatus: ['1', '2'],
-  unavailableStatus: ['3'],
+  availableStatus: ['1'],
+  unavailableStatus: ['2'],
 }
 
 

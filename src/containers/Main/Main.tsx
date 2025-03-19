@@ -46,7 +46,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     const isAnyThingSelected = selectedState !== undefined; // used to hide components if need/have not selected
 
     const selectedStatusOptions = selectedState ? dataProperties.availableStatus : dataProperties.unavailableStatus; // used to filter data 
-    const viewData = data.filter(row => selectedStatusOptions.includes(row.state));
+    const viewData = data.filter(row => selectedStatusOptions.includes(row.state)).sort((a, b) => { return b['important'].localeCompare(a['important'])});
 
     // selected table data - filtered by cat 1,cat2, state OR cat1, state OR just state
     const selectedTableData = selectedMapPoint !== undefined
