@@ -46,7 +46,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     const isAnyThingSelected = selectedState !== undefined; // used to hide components if need/have not selected
 
     const selectedStatusOptions = selectedState ? dataProperties.availableStatus : dataProperties.unavailableStatus; // used to filter data 
-    const viewData = data.filter(row => selectedStatusOptions.includes(row.state)).sort((a, b) => { return b['important'].localeCompare(a['important'])});
+    const viewData = data.filter(row => selectedStatusOptions.includes(row.state)).sort((a, b) => { return b['important'].localeCompare(a['important']) });
 
     // selected table data - filtered by cat 1,cat2, state OR cat1, state OR just state
     const selectedTableData = selectedMapPoint !== undefined
@@ -77,8 +77,8 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-evenly',
-                    width: '100%',
-                    pt: isAnyThingSelected? 0: 5
+                    width: { xs: 'auto', md: '100%' },
+                    pt: isAnyThingSelected ? 0 : 5
 
                 }}>
                     <Button onClick={handleMainButtonClick(true)} sx={headerButtonStyles(selectedState)} >

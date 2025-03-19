@@ -35,7 +35,7 @@ export const CustomMap = ({
     const isALocationSelected = selectedMapPoint !== undefined
 
     return (
-        <Box sx={{ m: 0, p: 0, width: '100%' }}>
+        <Box sx={{ m: 0, p: 0, mb: 5, width: '100%' }}>
             <Box
                 sx={{
                     display: 'flex',
@@ -88,7 +88,7 @@ export const CustomMap = ({
 
                     }}
                 >
-                    {selectedMapPoint === undefined ? <Typography sx={{ fontWeight: 600,  whiteSpace: 'pre-line'}} variant="body1"> {mapDefaultText} </Typography> :
+                    {selectedMapPoint === undefined ? <Typography sx={{ fontWeight: 600, whiteSpace: 'pre-line' }} variant="body1"> {mapDefaultText} </Typography> :
                         <>
                             <Typography sx={{ fontWeight: 600 }} variant="body1"> {selectedMapPoint.who} </Typography>
                             <Link
