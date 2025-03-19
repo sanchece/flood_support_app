@@ -136,7 +136,7 @@ export function ResourcesTable({
                 onClick={handleSort('state')}
                 sx={tableSortIconStyles}
               >
-                <Typography variant="body2" sx={{ fontWeight: 600 }}> {tableHeaders.state} </Typography>
+                <Typography variant="body2" sx={{ fontWeight: 700 }}> {tableHeaders.state} </Typography>
               </TableSortLabel>
             </TableCell>
             <TableCell sx={{p:1, width: '40%' }}>
@@ -146,7 +146,7 @@ export function ResourcesTable({
                 onClick={handleSort('item')}
                 sx={tableSortIconStyles}
               >
-                <Typography variant="body2" sx={{ fontWeight: 600 }}> {tableHeaders.item} </Typography>
+                <Typography variant="body2" sx={{ fontWeight: 700 }}> {tableHeaders.item} </Typography>
               </TableSortLabel>
             </TableCell>
             <TableCell sx={{ p:1,width: '25%' }}>
@@ -156,7 +156,7 @@ export function ResourcesTable({
                 onClick={handleSort('who')}
                 sx={tableSortIconStyles}
               >
-                <Typography variant="body2" sx={{ fontWeight: 600 }}> {state === true ? tableHeaders.whoHas : tableHeaders.whoNeed} </Typography>
+                <Typography variant="body2" sx={{ fontWeight: 700 }}> {state === true ? tableHeaders.whoHas : tableHeaders.whoNeed} </Typography>
               </TableSortLabel>
             </TableCell>
           </TableRow>

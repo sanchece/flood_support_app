@@ -63,7 +63,7 @@ export const headerButtonStyles = (selectedState) => {
 export const tableWrapperStyles =
 {
     display: 'flex',
-    m: { xs: 0, md: 2 }, my:0,
+    m: 0,
     width: '100%',
     height: {xs:350, md:300},
     border: 3,

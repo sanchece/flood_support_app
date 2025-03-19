@@ -88,7 +88,9 @@ export function ResourceSelection({
             onClick={onMainCatClick(button)}
           >
             <img src={iconMap[button.label]} alt={button.label} width={35} height={35} />
-            <Typography variant="body2">{button.label}</Typography>
+            <Typography sx={{
+              fontWeight: selectedCategory === button.label ? 800 : 400,
+            }} variant="body2">{button.label}</Typography>
 
           </Button>
         ))}
@@ -100,7 +102,11 @@ export function ResourceSelection({
             sx={subCatSelection(selectedSubCategory === button.label)}
             onClick={onSubCatClick(button)}
           >
-            <Typography variant="body2">{button.label}</Typography>
+            <Typography
+              sx={{
+                fontWeight: selectedSubCategory === button.label ? 800 : 400,
+              }}
+              variant="body2">{button.label}</Typography>
           </Button>
         ))}
       </Box>

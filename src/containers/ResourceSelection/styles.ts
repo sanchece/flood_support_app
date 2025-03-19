@@ -50,7 +50,7 @@ export const subCatSelection = (selectedSubCategory) => {
         mx: .2,
         my: .2,
         color: 'black',
-        backgroundColor: selectedSubCategory ? colors.secondaryIconsSelected : colors.secondaryIcons,
+        backgroundColor: selectedSubCategory ? colors.selectedIconBorder : colors.selectedIcon,
         display: 'flex',
         borderRadius: 3,
     }

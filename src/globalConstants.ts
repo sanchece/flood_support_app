@@ -101,7 +101,7 @@ export const appContent: LanguageType = {
         2: 'Low Supply',
         3: 'Urgent',
       },
-      mapDefaultText: 'Click a pin.',
+      mapDefaultText: "Click a pin.\n\nDouble tap to zoom in.",
       mapZoom: 'Double tap to zoom in.',
     },
     impactedPage: {
@@ -151,7 +151,7 @@ export const appContent: LanguageType = {
         2: 'Poca Disponibilidad',
         3: 'Se Necesita'
       },
-      mapDefaultText: 'Haga clic en una ubicación',
+      mapDefaultText: 'Seleccione una ubicación.\n\nToque dos veces para ampliar.',
       mapZoom: 'Toque dos veces para ampliar.',
     },
     impactedPage: {

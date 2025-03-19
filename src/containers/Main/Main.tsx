@@ -3,12 +3,12 @@ import {
     Box,
     Container,
     Typography,
-    SvgIcon,
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 
 import { fetchData } from '../../api'
 import { MainPage, dataProperties } from '../../globalConstants'
+import { filterData } from '../../globalHelpers'
 import { ResourceSelection } from '../ResourceSelection'
 import { CustomMap } from '../Map'
 import { ResourcesTable } from '../ResourceTable'
@@ -33,7 +33,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     const [completeData, setCompleteData] = useState({ es: [], en: [] });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-
     useEffect(() => {
         fetchData(setLoading, setCompleteData, setError);
     }, []);
@@ -47,20 +46,27 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
     const isAnyThingSelected = selectedState !== undefined; // used to hide components if need/have not selected
 
     const selectedStatusOptions = selectedState ? dataProperties.availableStatus : dataProperties.unavailableStatus; // used to filter data 
+    const viewData = data.filter(row => selectedStatusOptions.includes(row.state));
+
     // selected table data - filtered by cat 1,cat2, state OR cat1, state OR just state
     const selectedTableData = selectedMapPoint !== undefined
-        ? data.filter(row => selectedStatusOptions.includes(row.state) && row.who === selectedMapPoint.who)
+        ? viewData.filter(row => row.who === selectedMapPoint.who)
         : selectedSubCategory
-            ? data.filter(row => selectedStatusOptions.includes(row.state) && row.category1 === selectedCategory && row.category2 === selectedSubCategory)
+            ? viewData.filter(row => row.category1 === selectedCategory && row.category2 === selectedSubCategory)
             : selectedCategory
-                ? data.filter(row => selectedStatusOptions.includes(row.state) && row.category1 === selectedCategory)
-                : data.filter(row => selectedStatusOptions.includes(row.state));
+                ? viewData.filter(row => row.category1 === selectedCategory)
+                : viewData;
+
+    const mapPoints = filterData(viewData, 'who').filter(mapPoint => mapPoint.coordinates !== 'Unknown');
 
     const handleMainButtonClick = (state) => (event) => {
         setSelectedCategory(undefined);
         setSelectedState(state);
         setSelectedSubCategory(undefined);
+        setSelectedMapPoint(undefined);
     }
+
+    console.log('selectedTableData', selectedTableData)
 
     // Render based on state
     if (loading) return LoadingComponent;
@@ -72,8 +78,8 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'row',
-                       justifyContent: 'space-evenly',
-                       width: '100%',
+                    justifyContent: 'space-evenly',
+                    width: '100%',
 
                 }}>
                     <Button onClick={handleMainButtonClick(true)} sx={headerButtonStyles(selectedState)} >
@@ -105,12 +111,11 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                 isAnyThingSelected ?
                     <Box sx={{
                         display: 'flex',
-                        // flex: 4,
-                        width: {sm:'100%', md:'60%'},
+                        width: { sm: '100%', md: '60%' },
                         flexDirection: 'column',
-                        m: { xs: 0, md: 2 },
+                        m: 0,
                         alignItems: 'center',
-                        pt:0,
+                        pt: 0,
                     }}>
                         <Box
                             sx={tableWrapperStyles}>
@@ -127,9 +132,9 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                             content={content}
                             selectedMapPoint={selectedMapPoint}
                             setSelectedMapPoint={setSelectedMapPoint}
-                            selectedTableData={selectedTableData}
                             setSelectedSubCategory={setSelectedSubCategory}
                             setSelectedCategory={setSelectedCategory}
+                            mapPoints={mapPoints}
                         />
                     </Box>
                     : <></>
