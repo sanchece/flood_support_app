@@ -93,7 +93,7 @@ export const CustomMap = ({
                             <Typography sx={{ fontWeight: 600 }} variant="body1"> {selectedMapPoint.who} </Typography>
                             <Link
                                 color="inherit"
-                                href={createGoogleMapLink(selectedMapPoint)}
+                                href={createGoogleMapLink(selectedMapPoint.address)}
                                 target="_blank">
                                 <Typography variant="body1"> {selectedMapPoint.address} </Typography>
                             </Link>

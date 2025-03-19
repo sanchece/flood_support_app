@@ -24,5 +24,9 @@ export const graftLivingStudiosTheme = createTheme({
       fontSize: 10,
       fontFamily: 'Open Sans',
     },
+    subtitle1: {
+      fontSize: 10,
+      fontFamily: 'Montserrat',
+    },
   }
 });

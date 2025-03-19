@@ -121,42 +121,32 @@ export function ResourcesTable({
   return (
     <TableContainer>
       <Table>
-        <TableHead sx={{ height:'12px'}}>
+        <TableHead sx={{ height: '12px' }}>
           <TableRow sx={{
             position: 'sticky',
             top: 0,
             backgroundColor: colors.bodyBackground,
             zIndex: 1,
-            height:'12px'
+            height: '12px'
           }}>
-            <TableCell sx={{p:1, width: '30%' }}>
-              <TableSortLabel
-                active={orderBy === 'state'}
-                direction={orderBy === 'state' ? order : 'asc'}
-                onClick={handleSort('state')}
-                sx={tableSortIconStyles}
-              >
-                <Typography variant="body2" sx={{ fontWeight: 700 }}> {tableHeaders.state} </Typography>
-              </TableSortLabel>
-            </TableCell>
-            <TableCell sx={{p:1, width: '40%' }}>
+            <TableCell sx={{ p: 1, pl: 10, width: '40%' }}>
               <TableSortLabel
                 active={orderBy === 'item'}
                 direction={orderBy === 'item' ? order : 'asc'}
                 onClick={handleSort('item')}
                 sx={tableSortIconStyles}
               >
-                <Typography variant="body2" sx={{ fontWeight: 700 }}> {tableHeaders.item} </Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{tableHeaders.item} </Typography>
               </TableSortLabel>
             </TableCell>
-            <TableCell sx={{ p:1,width: '25%' }}>
+            <TableCell sx={{ p: 1, width: '25%' }}>
               <TableSortLabel
                 active={orderBy === 'who'}
                 direction={orderBy === 'who' ? order : 'asc'}
                 onClick={handleSort('who')}
                 sx={tableSortIconStyles}
               >
-                <Typography variant="body2" sx={{ fontWeight: 700 }}> {state === true ? tableHeaders.whoHas : tableHeaders.whoNeed} </Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}> {state === true ? tableHeaders.whoHas : tableHeaders.whoNeed} </Typography>
               </TableSortLabel>
             </TableCell>
           </TableRow>
@@ -167,23 +157,21 @@ export function ResourcesTable({
           {data.map((row, index) => (
             <React.Fragment key={index}>
               <TableRow>
-                <TableCell sx={tableCellStyles}>
-                  <Paper variant='elevation' sx={{
+                <TableCell sx={{ ...tableCellStyles, pl: 5 }}>
+                  {/* <Paper variant='elevation' sx={{
                     height: 30, color: 'white', borderRadius: 3,
                     justifyContent: 'center',
                     alignItems: 'center',
                     display: 'flex',
                     elevation: 24, width: '90%', backgroundColor: getCellColor(row.state)
-                  }}>
-                    <Typography variant="body2"> {getStateLabel(row.state, stateLabel)} </Typography>
-                    {/* <Chip variant='elevation' sx={{ width: '100%',elevation:24, backgroundColor: getCellColor(row.state) }} label={ */}
-                  </Paper>
+                  }}> */}
+                  <Typography variant="subtitle1"> {row.item} </Typography>
+                  {/* </Paper> */}
                 </TableCell>
-                <TableCell sx={tableCellStyles}><Typography variant="body2"> {row.item} </Typography></TableCell>
-                <TableCell sx={tableCellStyles}><Typography variant="body2"> {row.who}
+                <TableCell sx={tableCellStyles}><Typography variant="subtitle1"> {row.who}
                   <Button sx={{
                     backgroundColor: colors.tableExpandIcon,
-                    ml: 1, p: 0, px: 0, minWidth: 0,
+                    ml: 4, p: 0, px: 0, minWidth: 0,
                     borderRadius: 3,
                     color: 'white',
                   }} onClick={() => handleExpand(index)}>
@@ -195,20 +183,21 @@ export function ResourcesTable({
                 <TableRow sx={{
                   backgroundColor: colors.tableExpandedRow,
                 }}>
-                  <TableCell ><Link
-                    color="inherit"
-                    href={getCellLink('address', row.address)}
-                    target="_blank">
-                    <Typography variant="body2"> {row.address} </Typography>
-                  </Link></TableCell>
-                  <TableCell >
+                  <TableCell colSpan={1}> <Typography variant="subtitle1"> {row.how} </Typography></TableCell>
+                  <TableCell colSpan={2} >
+                    <Link
+                      color="inherit"
+                      href={getCellLink('address', row.address)}
+                      target="_blank">
+                      <Typography variant="subtitle1"> {row.address} </Typography>
+                    </Link>
                     <Link
                       color="inherit"
                       href={getCellLink('contact', row.contact)}
                       target="_blank">
-                      <Typography variant="body2"> {row.contact} </Typography>
-                    </Link></TableCell>
-                  <TableCell colSpan={2}> <Typography variant="body2"> {row.how} </Typography></TableCell>
+                      <Typography variant="subtitle1"> {row.contact} </Typography>
+                    </Link>
+                  </TableCell>
                 </TableRow>
               )}
             </React.Fragment>

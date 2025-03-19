@@ -17,7 +17,7 @@ import {
     headerNoneButtonStyles,
     mainButtonStyling,
     mainContainerStyles,
-    pieChartWrapperStyles,
+    selectionWrapperStyles,
     tableWrapperStyles,
     headerIconStyles,
 } from './Main.styles';
@@ -66,20 +66,19 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
         setSelectedMapPoint(undefined);
     }
 
-    console.log('selectedTableData', selectedTableData)
-
     // Render based on state
     if (loading) return LoadingComponent;
     if (error || data.length <= 0) return AlertComponent;
     return (
         <Container disableGutters maxWidth='lg' sx={mainContainerStyles}>
-            <Box sx={pieChartWrapperStyles}>
+            <Box sx={selectionWrapperStyles(isAnyThingSelected)}>
                 <Typography align="center" variant='h5' sx={headerNoneButtonStyles}>{content.Header1} </Typography>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-evenly',
                     width: '100%',
+                    pt: isAnyThingSelected? 0: 5
 
                 }}>
                     <Button onClick={handleMainButtonClick(true)} sx={headerButtonStyles(selectedState)} >
@@ -94,7 +93,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     </Button>
                 </Box>
                 {isAnyThingSelected ?
-                    <Box sx={{ pieChartWrapperStyles }}>
+                    <Box>
                         <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 2 }}>{selectedState ? content.Header3 : content.Header2} </Typography>
                         <ResourceSelection
                             allData={data}

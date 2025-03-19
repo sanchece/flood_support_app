@@ -8,14 +8,15 @@ export const mainContainerStyles = {
     p: { xs: 0, md: 'inherit' },
 }
 
-export const pieChartWrapperStyles =
-{
-    display: 'flex',
-    flexDirection: 'column',
-    width: {sm:'100%', md:'40%'},
-    alignItems: 'center',
-    m: { xs: 0, md: 2 },
-    p:0
+export const selectionWrapperStyles = (isAnyThingSelected) => {
+    return {
+        display: 'flex',
+        flexDirection: 'column',
+        width: { sm: '100%', md: isAnyThingSelected ? '40%' : '100%' },
+        alignItems: 'center',
+        m: { xs: 0, md: 2 },
+        p: isAnyThingSelected ? 0 : 10
+    }
 }
 
 export const pheaderWrapperStyles =
@@ -52,11 +53,11 @@ export const headerButtonStyles = (selectedState) => {
         borderColor: selectedState ? colors.bodyButton1Border : colors.bodyButton2Border,
         color: fontColor.buttons,
         height: '6.5rem',
-        width: {xs:'6.5rem', md: '15rem'},
+        width: { xs: '6.5rem', md: '15rem' },
         display: 'flex',
         borderRadius: 6,
         flexDirection: 'column',
-        mx:2, 
+        mx: 2,
     }
 }
 
@@ -65,7 +66,7 @@ export const tableWrapperStyles =
     display: 'flex',
     m: 0,
     width: '100%',
-    height: {xs:350, md:300},
+    height: { xs: 350, md: 300 },
     border: 3,
     color: colors.bodyBackground,
 }
@@ -73,7 +74,7 @@ export const tableWrapperStyles =
 export const mainButtonStyling = (selectedState) => {
     return {
         opacity: 0.65,
-        p:1,
+        p: 1,
         fontWeight: selectedState ? 700 : 400
     }
 }
