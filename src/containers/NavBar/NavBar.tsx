@@ -111,7 +111,6 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                         </Menu>
                     </Box>
 
-                    {/* <PriorityHighIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
                     <Typography
                         variant="h5"
                         noWrap
@@ -138,11 +137,10 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                                 color: 'white',
                             },
                             textTransform: 'none',
-                            fontSize: { xs: '12px', md: '16px' },
                             fontFamily: 'Open Sans'
                         }}
                     >
-                        <Typography variant={'body1'} sx={{ fontSize: 16 }}> {content.languageButton}</Typography>
+                        <Typography variant={'body1'} sx={{ fontSize: { xs: '12px', md: '16px' } }}> {content.languageButton}</Typography>
                     </Button>
                 </Toolbar>
             </Container>

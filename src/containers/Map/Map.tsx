@@ -42,7 +42,7 @@ export const CustomMap = ({
                     flexDirection: 'row',
                     flexWrap: 'wrap',
                     width: '90%',
-                    mt: 2,
+                    mt: 1,
                 }}
             >
                 {mapPoints.map((mapPoint) => (
@@ -74,35 +74,39 @@ export const CustomMap = ({
                 border: 4,
                 borderColor: colors.defaultIcon,
             }}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        backgroundColor: fontColor.bodyHeaders,
-                        color: 'white',
-                        p: 1,
-                        width: '30%',
-                        borderRadius: 2,
-                        left: { xs: 10, sm: 10 },
-                        top: 10,
-                        zIndex: 7,
+                {selectedMapPoint === undefined ?
+                    <></> :
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            backgroundColor: fontColor.bodyHeaders,
+                            color: 'white',
+                            p: .75,
+                            width: '28%',
+                            borderRadius: 2,
+                            left: { xs: 5, sm: 10 },
+                            top: 4,
+                            zIndex: 7,
+                        }}
+                    >
+                        {selectedMapPoint === undefined ?
+                            <></> :
+                            <>
+                                <Typography sx={{ fontSize:10,fontWeight: 600 }} variant="body1"> {selectedMapPoint.who} </Typography>
+                                <Link
+                                    color="inherit"
+                                    href={createGoogleMapLink(selectedMapPoint.address)}
+                                    target="_blank">
+                                    <Typography sx={{ fontSize:10}} variant="body1"> {selectedMapPoint.address} </Typography>
+                                </Link>
+                                <Typography sx={{ fontSize:10, pt: 1 }} variant="body1">{content.mapZoom} </Typography>
 
-                    }}
-                >
-                    {selectedMapPoint === undefined ? <Typography sx={{ fontWeight: 600, whiteSpace: 'pre-line' }} variant="body1"> {mapDefaultText} </Typography> :
-                        <>
-                            <Typography sx={{ fontWeight: 600 }} variant="body1"> {selectedMapPoint.who} </Typography>
-                            <Link
-                                color="inherit"
-                                href={createGoogleMapLink(selectedMapPoint.address)}
-                                target="_blank">
-                                <Typography variant="body1"> {selectedMapPoint.address} </Typography>
-                            </Link>
-                            <Typography sx={{ pt: 1 }} variant="body1">{content.mapZoom} </Typography>
 
+                            </>
+                        }
+                    </Box>
+                }
 
-                        </>
-                    }
-                </Box>
                 <>
                     <Map height={290} defaultCenter={[42.316477834989165, -83.1077980407536]} defaultZoom={12}>
                         {mapPoints.map((org) => {

@@ -96,7 +96,7 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     <Box>
                         <Typography align="center" variant='h5' sx={{ ...headerNoneButtonStyles, mt: 2 }}>{selectedState ? content.Header3 : content.Header2} </Typography>
                         <ResourceSelection
-                            allData={data}
+                            data={viewData}
                             selectedCategory={selectedCategory}
                             selectedStatusOptions={selectedStatusOptions}
                             selectedSubCategory={selectedSubCategory}

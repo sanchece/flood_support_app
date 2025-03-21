@@ -52,13 +52,12 @@ export function ResourceSelection({
   selectedSubCategory,
   setSelectedCategory,
   selectedCategory,
-  allData,
+  data,
   selectedStatusOptions,
   setSelectedMapPoint,
 }) {
-  const iconButtonOptions = countItems(allData, 'category1', 'state', selectedStatusOptions);
-  const secondaryOptions = countItems(allData, 'category2', 'category1', [selectedCategory]);
-
+  const iconButtonOptions = countItems(data, 'category1', 'state', selectedStatusOptions);
+  const secondaryOptions = countItems(data, 'category2', 'category1', [selectedCategory]);
   const onMainCatClick = (button) => () => {
     setSelectedMapPoint(undefined)
     if (selectedCategory === button.label) {

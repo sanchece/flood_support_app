@@ -39,7 +39,7 @@ export const subCatIconsContainer =
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: '70%',
+    width: '90%',
 }
 
 export const subCatSelection = (selectedSubCategory) => {
