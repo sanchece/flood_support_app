@@ -11,19 +11,45 @@ export function About({ content }: { content: AboutPage }) {
     return (
         <Container maxWidth='lg' sx={{
             display: 'flex',
-            flexDirection:  'column' ,
+            flexDirection: 'column',
             justifyContent: 'flex-end',
             mt: 6,
-            p: { xs: 2, md: 'inherit' }
+            p: { xs: 2, md: 'inherit' },
         }}>
             <Typography sx={{ m: 2, fontWeight: '600' }} variant='h6'> {content.header} </Typography>
-            <Box sx={{ borderRadius: '16px', backgroundColor: '#EFEFEF', height: '100%', m: { xs: 1, md: 0 }, p: 3 }}>
-                <Typography sx={{ color: '#828282' }}>
-                    To do: Add information about all resources available for those impacted. <br />
-                    Potential content: Links, Guides, Visuals, etc <br /><br />
+            <Box sx={{
+                borderRadius: '16px',
+                backgroundColor: '#EFEFEF',
+                color: '#828282',
+                height: '100%',
+                m: { xs: 1, md: 0 },
+                p: 3, 
+            }}>
+                <Typography variant="body1">
+                    This resource-app was imagined, designed, & developed 100% with the power of local volunteers.
+                    Shout-out to:
+                </Typography> <br />
+                <Typography sx={{ fontSize:13,px: 2, fontWeight: 700 }}> Anonymous volunteer 1</Typography>
+                <Typography sx={{ px: 4 }}> &#9656;  Full stack software development</Typography>
+                <Typography sx={{ px: 4 }}> &#9656;  South West Detroit Native</Typography>
+                <Typography sx={{ px: 4 }}>
+                    &#9656;  This creator and GLS found each other in pursuit of using technology and clear-communication as an aide to the SW Detroit flooding incident. This individual introduced passion, immense willpower, & genuine kindness in our process. Thank you for your insanely-quick software developments over late nights and for offering your forged talents to serve our community.
+                </Typography><br/>
 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempor diam nec tortor dignissim mollis. Morbi sed nisl et turpis gravida convallis. Sed ullamcorper porta dapibus. Sed in erat ornare, tristique augue id, posuere lorem. Donec nunc sapien, elementum sed metus eget, ultricies fringilla velit. Praesent et purus mauris. Vivamus aliquam mi justo. Proin facilisis commodo mi vel rhoncus.
-                    Sed aliquam nibh id ipsum congue, pellentesque suscipit metus laoreet. In mollis feugiat viverra. Quisque sollicitudin facilisis nisi, sed finibus mauris feugiat ac. Sed euismod laoreet viverra. Integer sollicitudin sit amet lacus nec accumsan. Morbi euismod dapibus tempus. Proin elit tellus, dignissim sodales dignissim sit amet, tincidunt ac dolor. Aliquam accumsan neque sit amet viverra tempor. Sed ut leo est. Donec tristique finibus dolor at porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;Ut rutrum augue maximus, posuere turpis id, efficitur ipsum. Aliquam et metus nisl. Quisque lacinia diam vel enim dapibus, id interdum magna lobortis. In felis tortor, lacinia at convallis et, lobortis id turpis. Nulla facilisi. Etiam accumsan tincidunt vehicula. Donec at quam a libero placerat ultricies.
+                <Typography sx={{ px: 2, fontWeight: 700 }}> Anonymous volunteer 2</Typography>
+                <Typography sx={{ px: 4 }}> &#9656;  UX design, beta-developer & tester</Typography>
+                <Typography sx={{ px: 4 }}> &#9656;  South West Detroit Resident</Typography>
+                <Typography sx={{ px: 4 }}>
+                    &#9656;  Our standing relationship with this local creator allowed us to flow right into a beautiful collaboration. Continually, we humbly receive the clarity & winning-attutude from this partnership, and this project has been no different. Demonstrated by your impact, it feels like any challenge can be overcome with clever solutions. We & the community are lucky to share time & space with you.
+                </Typography><br/>
+
+                <Typography sx={{ px: 2, fontWeight: 700 }}> Graft Living Studios Team</Typography>
+                <Typography sx={{ px: 4 }}> &#9656;  Project coordination, database modeling & development</Typography>
+                <Typography sx={{ px: 4, whiteSpace: 'pre-line' }}>
+                    &#9656;  The GLS team was wonderfully inspired & challenged to pull from existing & new digital skills. This app aims to be a genuine & real-time data-storytelling tool that connects
+                    1) impacted residents to
+                    2) SW Detroit resources to
+                    3) the public; then perhaps connecting broader communities to broader resources tomorrow.
                 </Typography>
             </Box>
         </Container>

@@ -18,7 +18,7 @@ import {
     colors,
 } from '../../globalConstants'
 
-const pages = ["headerPage1", "headerPage3"];
+const pages = [ "headerPage3"];
 
 interface NavBarProps {
     content: LanguageContent;

@@ -25,7 +25,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Main isSpanish={isSpanish} content={content.mainPage} />} />
-            <Route path="/impacted" element={<Impacted content={content.impactedPage} />} />
             <Route path="/about" element={<About content={content.aboutPage} />} />
           </Routes>
         </BrowserRouter>
