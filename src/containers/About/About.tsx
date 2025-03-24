@@ -27,9 +27,9 @@ export function About({ content }: { content: AboutPage }) {
             }}>
                 <Typography variant="body1">
                     This resource-app was imagined, designed, & developed 100% with the power of local volunteers.
-                    Shout-out to:
+                    {/* Shout-out to: */}
                 </Typography> <br />
-                <Typography sx={{ fontSize:13,px: 0, fontWeight: 700 }}> Anonymous volunteer 1</Typography>
+                {/* <Typography sx={{ fontSize:13,px: 0, fontWeight: 700 }}> Anonymous volunteer 1</Typography>
                 <Typography sx={{ px: 2 }}> &#9656;  Full stack software development</Typography>
                 <Typography sx={{ px: 2 }}> &#9656;  South West Detroit Native</Typography>
                 <Typography sx={{ px: 2 }}>
@@ -50,7 +50,7 @@ export function About({ content }: { content: AboutPage }) {
                     1) impacted residents to
                     2) SW Detroit resources to
                     3) the public; then perhaps connecting broader communities to broader resources tomorrow.
-                </Typography>
+                </Typography> */}
             </Box>
         </Container>
     );
