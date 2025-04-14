@@ -44,14 +44,14 @@ export const subCatIconsContainer =
 
 export const subCatSelection = (selectedSubCategory) => {
     return {
+        backgroundColor: selectedSubCategory ? colors.selectedIconBorder : colors.selectedIcon,
+        borderRadius: 3,
+        color: 'black',
+        display: 'flex',
+        mx: .2,
+        my: .2,
         px: 1,
         py: .5,
         textTransform: 'none',
-        mx: .2,
-        my: .2,
-        color: 'black',
-        backgroundColor: selectedSubCategory ? colors.selectedIconBorder : colors.selectedIcon,
-        display: 'flex',
-        borderRadius: 3,
     }
 }

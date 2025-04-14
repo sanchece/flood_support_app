@@ -43,42 +43,6 @@ function getCellLink(column: string, value: string) {
   return link;
 }
 
-function getStateLabel(value: string, stateLabel: string) {
-  let label = '';
-  switch (value) {
-    case '3':
-      label = stateLabel[3];
-      break;
-    case '2':
-      label = stateLabel[2];
-      break;
-    case '1':
-      label = stateLabel[1];
-      break
-    default:
-      label = value
-  }
-  return label;
-}
-
-function getCellColor(value: string) {
-  let color = '';
-  switch (value) {
-    case '3':
-      color = "#ff3131";
-      break;
-    case '2':
-      color = "#f67e34";
-      break;
-    case '1':
-      color = "#00bf63";
-      break;
-    default:
-      color = '';
-  }
-  return color;
-}
-
 export function ResourcesTable({
   content,
   selectedCategory,
@@ -92,7 +56,7 @@ export function ResourcesTable({
   const [orderBy, setOrderBy] = useState('state');
   const [expandedRows, setExpandedRows] = useState({});
   const { Table1: tableHeaders } = content
-
+  
   useEffect(() => {
     setData(selectedTableData);
   }, [selectedCategory, selectedSubCategory, state, content, selectedMapPoint]);
@@ -131,16 +95,6 @@ export function ResourcesTable({
             zIndex: 1,
             height: '12px'
           }}>
-            {/* <TableCell sx={{ p: 1}}>
-              <TableSortLabel
-                active={orderBy === 'important'}
-                direction={orderBy === 'important' ? order : 'asc'}
-                onClick={handleSort('important')}
-              sx={tableSortIconStyles}
-              >
-                
-              </TableSortLabel>
-            </TableCell> */}
             <TableCell sx={{ p: 1, pl: 7, width: '40%' }}>
               <TableSortLabel
                 active={orderBy === 'item'}

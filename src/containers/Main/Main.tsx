@@ -44,7 +44,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
 
     const data = isSpanish ? completeData.es : completeData.en; // filter data by language
     const isAnyThingSelected = selectedState !== undefined; // used to hide components if need/have not selected
-
     const selectedStatusOptions = selectedState ? dataProperties.availableStatus : dataProperties.unavailableStatus; // used to filter data 
     const viewData = data.filter(row => selectedStatusOptions.includes(row.state)).sort((a, b) => { return b['important'].localeCompare(a['important']) });
 
@@ -58,7 +57,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                 : viewData;
 
     const mapPoints = filterData(viewData, 'who').filter(mapPoint => mapPoint.coordinates !== 'Unknown');
-
     const handleMainButtonClick = (state) => (event) => {
         setSelectedCategory(undefined);
         setSelectedState(state);
@@ -138,7 +136,6 @@ export function Main({ content, isSpanish }: { content: MainPage, isSpanish: boo
                     </Box>
                     : <></>
             }
-
         </Container >
     );
 }

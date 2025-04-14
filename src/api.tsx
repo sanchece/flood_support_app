@@ -7,11 +7,9 @@ export const fetchData = async (setLoading, setCompleteData, setError) => {
   const url = `${baseUrl}/getData`;
   try {
     const response = await fetch(url, {
-      method: 'GET', // default method
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Add any additional headers if needed
-        // 'Authorization': 'Bearer YOUR_TOKEN'
       },
     });
     const data = await response.json(); // need to convert it into js object otherwise not usable
@@ -36,4 +34,3 @@ export const fetchData = async (setLoading, setCompleteData, setError) => {
     setLoading(false);
   }
 };
-

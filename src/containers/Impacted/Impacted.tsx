@@ -7,9 +7,7 @@ import {
 import { ImpactedPage } from '../../globalConstants'
 
 export function Impacted({ content }: { content: ImpactedPage }) {
-
-
-    return (
+    (
         <Container maxWidth='lg' sx={{
             display: 'flex',
             flexDirection: 'column',

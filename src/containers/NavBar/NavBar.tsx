@@ -46,7 +46,6 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            // flexGrow: 1,
                             color: 'inherit',
                             textDecoration: 'none',
                             fontSize: 27

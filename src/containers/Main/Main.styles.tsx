@@ -15,7 +15,7 @@ export const selectionWrapperStyles = (isAnyThingSelected) => {
         width: { sm: '100%', md: isAnyThingSelected ? '40%' : '100%' },
         alignItems: 'center',
         m: { xs: 0, md: 2 },
-        p: isAnyThingSelected ? 0 : 10
+        p: isAnyThingSelected ? 0 : 10,
     }
 }
 
@@ -75,6 +75,6 @@ export const mainButtonStyling = (selectedState) => {
     return {
         opacity: 0.65,
         p: 1,
-        fontWeight: selectedState ? 700 : 400
+        fontWeight: selectedState ? 700 : 400,
     }
 }

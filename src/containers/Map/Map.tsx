@@ -7,9 +7,7 @@ import {
 } from "@mui/material";
 import { Map, Marker } from "pigeon-maps"
 import { fontColor, colors } from '../../globalConstants'
-
 import { createGoogleMapLink, filterData } from '../../globalHelpers'
-
 
 export const CustomMap = ({
     content,
@@ -19,7 +17,6 @@ export const CustomMap = ({
     setSelectedCategory,
     mapPoints,
 }) => {
-    const { mapDefaultText } = content
     // Handle marker click to toggle tooltip visibility
     const handleMarkerClick = (pointInfo) => () => {
         if (selectedMapPoint !== undefined && selectedMapPoint.who === pointInfo.who) {
@@ -31,7 +28,6 @@ export const CustomMap = ({
             setSelectedSubCategory(undefined)
         }
     };
-
     const isALocationSelected = selectedMapPoint !== undefined
 
     return (
@@ -68,7 +64,6 @@ export const CustomMap = ({
                 )
                 )}
             </Box>
-
             <Container disableGutters sx={{
                 p: 0, mt: 0, width: '100%', position: 'relative',
                 border: 4,
@@ -106,7 +101,6 @@ export const CustomMap = ({
                         }
                     </Box>
                 }
-
                 <>
                     <Map height={290} defaultCenter={[42.316477834989165, -83.1077980407536]} defaultZoom={12}>
                         {mapPoints.map((org) => {

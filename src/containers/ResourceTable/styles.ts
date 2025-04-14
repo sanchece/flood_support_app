@@ -16,4 +16,3 @@ export const tableSortIconStyles =
 export const tableCellStyles = {
     p:0.2, px:2
 }
-
