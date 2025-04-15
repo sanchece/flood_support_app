@@ -76,7 +76,7 @@ export const appContent: LanguageType = {
     },
     languageButton: "español",
     mainPage: {
-      button1: "Need Support",
+      button1: "Want to Help",
       button2: "Share Resources",
       Header1: "WHAT BRINGS YOU HERE TODAY?",
       Header2: "HERE'S WHAT THE COMMUNITY NEEDS",
