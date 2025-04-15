@@ -3,14 +3,14 @@ import {
   mainCatIcons,
   mainCatIconsContainer,
   resourceSelectionContainer,
-  subCatSelection,
   subCatIconsContainer,
+  subCatSelection,
 } from './styles';
-import Food from '../../assets/food.svg'; // Adjust the path accordingly
-import Info from '../../assets/info.svg'; // Adjust the path accordingly
-import Service from '../../assets/service.svg'; // Adjust the path accordingly
-import Shelter from '../../assets/shelter.svg'; // Adjust the path accordingly
-import Supplies from '../../assets/supplies.svg'; // Adjust the path accordingly
+import Food from '../../assets/food.svg';
+import Info from '../../assets/info.svg';
+import Service from '../../assets/service.svg';
+import Shelter from '../../assets/shelter.svg';
+import Supplies from '../../assets/supplies.svg';
 
 const iconMap = {
   Alimento: Food,
@@ -23,7 +23,7 @@ const iconMap = {
   Shelter,
   Suministros: Supplies,
   Supplies,
-}
+};
 
 function countItems(data, label, keyForCondition, validKeyValues) {
   // Create a map to store counts for each category
@@ -48,13 +48,13 @@ function countItems(data, label, keyForCondition, validKeyValues) {
 }
 
 export function ResourceSelection({
-  setSelectedSubCategory,
+  data,
+  selectedCategory,
+  selectedStatusOptions,
   selectedSubCategory,
   setSelectedCategory,
-  selectedCategory,
-  data,
-  selectedStatusOptions,
   setSelectedMapPoint,
+  setSelectedSubCategory,
 }) {
   const iconButtonOptions = countItems(data, 'category1', 'state', selectedStatusOptions);
   const secondaryOptions = countItems(data, 'category2', 'category1', [selectedCategory]);

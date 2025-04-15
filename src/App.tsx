@@ -6,7 +6,6 @@ import './index.css';
 
 import {
   About,
-  Impacted,
   Main,
   NavBar,
 } from './containers';

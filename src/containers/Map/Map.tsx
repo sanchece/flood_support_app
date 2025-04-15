@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { Map, Marker } from "pigeon-maps"
 import { fontColor, colors } from '../../globalConstants'
-import { createGoogleMapLink, filterData } from '../../globalHelpers'
+import { createGoogleMapLink } from '../../globalHelpers'
 
 export const CustomMap = ({
     content,

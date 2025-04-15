@@ -23,7 +23,7 @@ const pages = [ "headerPage3"];
 interface NavBarProps {
     content: LanguageContent;
     changeLanguage: () => void;
-}
+};
 
 export function NavBar({ content, changeLanguage }: NavBarProps) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -44,11 +44,11 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                         component="a"
                         href="/"
                         sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
                             color: 'inherit',
+                            display: { xs: 'none', md: 'flex' },
+                            fontSize: 27,
+                            mr: 2,
                             textDecoration: 'none',
-                            fontSize: 27
                         }}
                     > {content.headerTitle}
                     </Typography>
@@ -58,13 +58,13 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{
-                                    px: 3, py: 1, color: 'white', display: 'block'
-                                    , '&:hover': {
+                                    fontSize: "16px",
+                                    color: 'white', display: 'block', px: 3, py: 1, 
+                                     '&:hover': {
                                         backgroundColor: 'white',
                                         color: page == "impacted?" ? 'red' : 'black',
                                     },
                                     textTransform: 'none',
-                                    fontSize: "16px"
                                 }}
                                 href={content?.[page].url}
                             >
@@ -83,26 +83,24 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
                             color="inherit"
-                        >
-                            <MenuIcon />
+                        > <MenuIcon />
                         </IconButton>
                         <Menu
-                            id="menu-appbar"
                             anchorEl={anchorElNav}
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'left',
                             }}
+                            id="menu-appbar"
                             keepMounted
+                            onClose={handleCloseNavMenu}
+                            open={Boolean(anchorElNav)}
+                            sx={{ display: { xs: 'block', md: 'none' } }}
                             transformOrigin={{
                                 vertical: 'top',
                                 horizontal: 'left',
                             }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{ display: { xs: 'block', md: 'none' } }}
-                        >
-                            {pages.map((page) => (
+                        > {pages.map((page) => (
                                 <MenuItem key={page} component="a" onClick={handleCloseNavMenu} href={content[page].url}>
                                     <Typography sx={{ textAlign: 'center' }}>{content[page].label}</Typography>
                                 </MenuItem>
@@ -111,15 +109,15 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                     </Box>
 
                     <Typography
-                        variant="h5"
-                        noWrap
                         component="a"
                         href="/"
+                        noWrap
+                        variant="h5"
                         sx={{
-                            mr: 2,
+                            color: 'inherit',
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            color: 'inherit',
+                            mr: 2,
                             textDecoration: 'none',
                         }}
                     > {content.headerTitleMobile}
@@ -129,16 +127,15 @@ export function NavBar({ content, changeLanguage }: NavBarProps) {
                         onClick={changeLanguage}
                         sx={{
                             mx: 1, px: 1, py: 1, color: 'black'
-                            , backgroundColor: colors.navButton
-                            , display: 'block'
-                            , '&:hover': {
+                            ,backgroundColor: colors.navButton
+                            ,display: 'block'
+                            ,'&:hover': {
                                 backgroundColor: '#0e194d',
                                 color: 'white',
                             },
                             textTransform: 'none',
                             fontFamily: 'Open Sans'
-                        }}
-                    >
+                        }}>
                         <Typography variant={'body1'} sx={{ fontSize: { xs: '12px', md: '16px' } }}> {content.languageButton}</Typography>
                     </Button>
                 </Toolbar>

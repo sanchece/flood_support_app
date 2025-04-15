@@ -2,6 +2,9 @@ import { tableSortIconStyles, tableCellStyles } from './styles'
 
 import React, { useEffect, useState } from 'react';
 import {
+  Box,
+  Button,
+  Link,
   Table,
   TableBody,
   TableCell,
@@ -9,17 +12,13 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  Button,
   Typography,
-  Box,
 } from '@mui/material';
-import { Link } from "@mui/material";
-
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { colors } from '../../globalConstants'
-import { createGoogleMapLink } from '../../globalHelpers'
-
 import StarIcon from '@mui/icons-material/Star';
+
+import { colors } from '../../globalConstants';
+import { createGoogleMapLink } from '../../globalHelpers';
 
 function getCellLink(column: string, value: string) {
   let link = '';
@@ -37,7 +36,7 @@ function getCellLink(column: string, value: string) {
       }
       else link = undefined
       break;
-    default:
+      default:
       link = undefined
   }
   return link;

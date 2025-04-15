@@ -75,6 +75,6 @@ export const mainButtonStyling = (selectedState) => {
     return {
         opacity: 0.65,
         p: 1,
-        fontWeight: selectedState ? 700 : 400,
+        fontWeight: selectedState ? 700 : 400
     }
 }

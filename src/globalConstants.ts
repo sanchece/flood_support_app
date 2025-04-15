@@ -10,14 +10,13 @@ export interface Data {
   accepting: string;
   connect: string;
   contact: string;
-}
+};
 
 // Define the structure for each page (headerPage1, headerPage2, etc.)
 export interface HeaderPage {
   label: string;
   url: string;
-}
-
+};
 
 export interface MainPage {
   Header1: string;
@@ -29,16 +28,15 @@ export interface MainPage {
   button2: string,
   mapDefaultText: string,
   mapZoom: string,
-
-}
+};
 
 export interface ImpactedPage {
   header: string;
-}
+};
 
 export interface AboutPage {
   header: string;
-}
+};
 
 // Define the structure for each language content (English and Spanish)
 export interface LanguageContent {
@@ -166,13 +164,12 @@ export const appContent: LanguageType = {
 export interface dataPropertiesType {
   availableStatus: [string];
   unavailableStatus: [string];
-}
+};
 
 export const dataProperties: dataPropertiesType = {
   availableStatus: ['1'],
   unavailableStatus: ['2'],
-}
-
+};
 
 export const colors = {
   navBar: '#8e8b39',
@@ -208,7 +205,7 @@ export const colors = {
     '#00919E',
     '#45B8A7'
   ]
-}
+};
 
 export const fonts = {
   navMain: 'Montserrat',
@@ -216,7 +213,7 @@ export const fonts = {
   bodyHeaders: 'Montserrat',
   bodyButtons: 'Open Sans',
   table: 'Open Sans',
-}
+};
 
 export const fontSize = {
   navMain: '16pt', // mobile
@@ -225,9 +222,9 @@ export const fontSize = {
   bodyButtons: '12px', // bold when selected
   icons: '9px',
   table: '10px'
-}
+};
 
 export const fontColor = {
   bodyHeaders: '#0e194d',
   buttons: '#0e194d',
-}
+};

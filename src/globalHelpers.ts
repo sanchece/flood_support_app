@@ -1,5 +1,5 @@
 
-export function filterData(mapData, who) {
+export function filterData(mapData: any[], who: string) {
     const seen = new Set();
     return mapData.reduce((result, item) => {
         if (!seen.has(item[who])) {
@@ -8,9 +8,7 @@ export function filterData(mapData, who) {
                 [who]: item[who],
                 address: item['address'],
                 coordinates: item['coordinates']
-
-            });
-        }
+            })};
         return result;
     }, []);
 };
@@ -18,5 +16,5 @@ export function filterData(mapData, who) {
 export function createGoogleMapLink(address: string) {
     var encodedAddress = encodeURIComponent(address); // Encode address for URL
     return "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
-  }
+  };
   

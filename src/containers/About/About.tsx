@@ -7,7 +7,7 @@ import {
 import { AboutPage } from '../../globalConstants'
 
 export function About({ content }: { content: AboutPage }) {
-    (
+    return (
         <Container maxWidth='lg' sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -17,8 +17,8 @@ export function About({ content }: { content: AboutPage }) {
         }}>
             <Typography sx={{ m: 1, fontWeight: '600' }} variant='h6'> {content.header} </Typography>
             <Box sx={{
-                borderRadius: '16px',
                 backgroundColor: '#EFEFEF',
+                borderRadius: '16px',
                 color: '#828282',
                 height: '100%',
                 m: { xs: 1, md: 0 },
@@ -54,4 +54,3 @@ export function About({ content }: { content: AboutPage }) {
 }
 
 export default About;
-
